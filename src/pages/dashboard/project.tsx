@@ -16,6 +16,7 @@ function Project() {
     { id: 2, task: "Setup Backend", assignedTo: "Jane Smith", status: "In Progress" },
     { id: 3, task: "Develop Frontend", assignedTo: "Sarah Lee", status: "Not Started" },
   ]);
+  console.log(setTasks)
 
   // Edit mode toggling
   const [isEditing, setIsEditing] = useState(false);

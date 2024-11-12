@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SideNavigation from "./side-nav";
-import ProfileModal from '../modal/profilemodal';
+import ProfileModal from "../modal/profilemodal";
+import { FaBell, FaQuestionCircle, FaBug } from "react-icons/fa"; // Importing icons
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
@@ -28,56 +29,94 @@ function NavigationBar() {
     setIsModalOpen(!isModalOpen);
   };
 
+  const location = useLocation();
+
+  // Split the pathname into path segments
+  const pathSegments = location.pathname
+    .split("/")
+    .filter((item) => item !== "");
+
+  // Generate breadcrumb items
+  const breadcrumbItems = pathSegments.map((segment, index) => {
+    // Create the path for each segment dynamically
+    const linkPath = "/" + pathSegments.slice(0, index + 1).join("/");
+
+    // Capitalize the first letter of each segment (optional)
+    const segmentLabel = segment.charAt(0).toUpperCase() + segment.slice(1);
+
+    return { label: segmentLabel, path: linkPath };
+  });
+
   return (
-    <div className="w-full p-5 bg-zinc-50 border-b-2">
+    <div className="w-full p-3 bg-zinc-50 border-b-2">
       <div className="w-full flex justify-between items-center">
-        {/* Left section with profile and navigation links */}
-        <div className="flex gap-4 items-center">
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden block">
-            <button onClick={toggleSwitch}>
-              <div className="flex gap-2 items-center">
-                <img
-                  src="https://avatars.githubusercontent.com/u/176706430?s=200&v=4"
-                  alt="Profile"
-                  className="h-8 w-8 rounded-full"
-                />
-                <p className="text-xl font-semibold">Im Rabo</p>
-              </div>
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden">
+          <button
+            onClick={toggleSwitch}
+            className="text-black p-2 rounded-md bg-gray-200"
+          >
+             <img
+                src="https://avatars.githubusercontent.com/u/176706430?s=200&v=4"
+                alt="Profile"
+                className="h-8 w-8 rounded-full"
+              />
+          </button>
+        </div>
+        {/* Left section with breadcrumb */}
+        <div className="hidden lg:block  text-gray-500 w-full lg:w-auto gap-3 ml-5">
+          <Link to="#" className="text-blue-600 hover:underline">
+            Home
+          </Link>
+          {breadcrumbItems.map((item, index) => (
+            <span key={index}>
+              {" > "}
+              <Link to={item.path} className="text-blue-600 hover:underline">
+                {item.label}
+              </Link>
+            </span>
+          ))}
+        </div>
+
+        {/* Center section with search bar */}
+        <div className="hidden lg:flex w-auto flex-grow justify-center items-center">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-3/4 sm:w-1/2 p-2 border rounded-md shadow-sm focus:outline-none"
+          />
+        </div>
+
+        {/* Right section with icons and user profile */}
+        <div className="flex gap-4 items-center lg:gap-2">
+          <button className="p-2 rounded-lg hover:bg-zinc-200">
+            <FaBell className="text-xl text-gray-600" />
+          </button>
+          <div className="hidden lg:block">
+            <button className="p-2 rounded-lg hover:bg-zinc-200">
+              <FaQuestionCircle className="text-xl text-gray-600" />
+            </button>
+          </div>
+          <div className="hidden lg:block">
+            <button className="p-2 rounded-lg hover:bg-zinc-200">
+              <FaBug className="text-xl text-gray-600" />
             </button>
           </div>
 
-          {/* Navigation Links for larger screens */}
-          <div className="hidden lg:block">
-            <ul className="flex gap-4">
-              {["Dashboard", "Devices", "Network", "Logs", "Settings"].map(
-                (item, index) => (
-                  <li key={index}>
-                    <Link to={`/${item.toLowerCase()}`}>
-                      <div className="text-zinc-500 hover:text-black">
-                        {item}
-                      </div>
-                    </Link>
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-        </div>
-
-        {/* Right section with user profile */}
-        <div
-          className="flex gap-2 items-center cursor-pointer hover:bg-zinc-200 p-2 rounded-lg transition duration-300"
-          onClick={toggleProfileModal}
-        >
-          <img
-            src={user.profilePicture}
-            alt="Profile"
-            className="h-8 w-8 rounded-full"
-          />
-          <div className="hidden lg:block">
-            <p className="text-xs font-semibold">{user.name}</p>
-            <p className="text-xs">{user.company}</p>
+          {/* User profile */}
+          <div
+            className="flex gap-2 items-center cursor-pointer hover:bg-zinc-200 p-2 rounded-lg transition duration-300"
+            onClick={toggleProfileModal}
+          >
+            <img
+              src={user.profilePicture}
+              alt="Profile"
+              className="h-8 w-8 rounded-full"
+            />
+            <div className="hidden lg:block">
+              <p className="text-xs font-semibold">{user.name}</p>
+              <p className="text-xs">{user.company}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -108,7 +147,9 @@ function NavigationBar() {
       <ProfileModal
         open={isModalOpen}
         handleClose={toggleProfileModal}
-        user={user} handleUpdateProfile={undefined}      />
+        user={user}
+        handleUpdateProfile={undefined}
+      />
     </div>
   );
 }

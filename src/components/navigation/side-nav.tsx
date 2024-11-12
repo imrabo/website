@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 function SideNavigation() {
+  // Example data for usage plan and remaining credits
+  const remainingCredits = 60; // Example remaining credits (out of 100)
+  const usagePercentage = (remainingCredits / 100) * 100;
+
   return (
     <div className="h-screen w-72 border-r-2 flex flex-col bg-white">
       {/* Top Section */}
@@ -101,9 +105,17 @@ function SideNavigation() {
         </div>
       </section>
 
-      {/* Bottom Section */}
+      {/* Bottom Section with Usage Plan and Remaining Credits */}
       <section className="p-3 text-center border-t-2">
-        <p className="text-xs">Section 02</p>
+        <p className="text-xs font-semibold mb-2">Section 02 - Usage Plan</p>
+        <p className="text-xs mb-4">Remaining Credits: {remainingCredits} / 100</p>
+        <div className="w-full bg-zinc-200 rounded-full h-2.5 mb-4">
+          <div
+            className="bg-blue-500 h-2.5 rounded-full"
+            style={{ width: `${usagePercentage}%` }}
+          ></div>
+        </div>
+        <p className="text-xs text-gray-500">Usage Progress</p>
       </section>
     </div>
   );
