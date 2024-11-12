@@ -30,7 +30,7 @@ function SignIn() {
           <div className="my-4" />
           <div>
             {" "}
-            <Link to="/college">
+            <Link to="/dashboard">
               <CustomButton label="Sign In" type="submit" />
             </Link>
           </div>

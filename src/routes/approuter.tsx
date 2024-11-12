@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
-import TopLoadingBar from "react-top-loading-bar";
+import React from "react";
+import { createBrowserRouter, RouterProvider, RouteObject } from "react-router-dom";
 
 import SignUp from "../pages/auth/sign_up";
 import SignIn from "../pages/auth/sign_in";
@@ -15,11 +14,8 @@ import Project from "../pages/dashboard/project";
 import Courses from "../pages/dashboard/croues";
 
 const AppRouter: React.FC = () => {
-  const loadingBarRef = useRef<TopLoadingBar>(null);
-  
-  const [isLoading, setIsLoading] = useState(false);
-
-  const routes = createBrowserRouter([
+  // Define route objects using TypeScript types
+  const routes: RouteObject[] = [
     {
       path: "/",
       element: <HomeScreen />,
@@ -45,30 +41,14 @@ const AppRouter: React.FC = () => {
         { path: "users", element: <Users /> },
       ],
     },
-  ]);
+  ];
 
-  useEffect(() => {
-    if (isLoading) {
-      loadingBarRef.current?.continuousStart();
-    } else {
-      loadingBarRef.current?.complete();
-    }
-  }, [isLoading]);
-
-  
+  const router = createBrowserRouter(routes);
 
   return (
     <>
-      {/* Loading Bar */}
-      <TopLoadingBar color="#4f46e5" ref={loadingBarRef} height={3} />
-
       {/* RouterProvider to render the routes */}
-      <RouterProvider
-        router={routes}
-        fallbackElement={<div>Loading...</div>}
-      
-      
-      />
+      <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />
     </>
   );
 };

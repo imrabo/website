@@ -2,12 +2,21 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SideNavigation from "./side-nav";
 import ProfileModal from "../modal/profilemodal";
-import { FaBell, FaQuestionCircle, FaBug } from "react-icons/fa"; // Importing icons
+import { FaBell, FaQuestionCircle, FaBug } from "react-icons/fa";
 
-function NavigationBar() {
+// TypeScript type for User object
+interface User {
+  name: string;
+  company: string;
+  profilePicture: string;
+}
+
+const NavigationBar: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-  const [user] = useState({
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Initialize user data
+  const [user] = useState<User>({
     name: "Prathamesh More",
     company: "Bugs and Glitches",
     profilePicture:
@@ -40,10 +49,8 @@ function NavigationBar() {
   const breadcrumbItems = pathSegments.map((segment, index) => {
     // Create the path for each segment dynamically
     const linkPath = "/" + pathSegments.slice(0, index + 1).join("/");
-
-    // Capitalize the first letter of each segment (optional)
+    // Capitalize the first letter of each segment
     const segmentLabel = segment.charAt(0).toUpperCase() + segment.slice(1);
-
     return { label: segmentLabel, path: linkPath };
   });
 
@@ -52,20 +59,18 @@ function NavigationBar() {
       <div className="w-full flex justify-between items-center">
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
-          <button
-            onClick={toggleSwitch}
-            className="text-black p-2 rounded-md bg-gray-200"
-          >
-             <img
-                src="https://avatars.githubusercontent.com/u/176706430?s=200&v=4"
-                alt="Profile"
-                className="h-8 w-8 rounded-full"
-              />
+          <button onClick={toggleSwitch} className="text-black p-2 rounded-md bg-gray-200">
+            <img
+              src="https://avatars.githubusercontent.com/u/176706430?s=200&v=4"
+              alt="Profile"
+              className="h-8 w-8 rounded-full"
+            />
           </button>
         </div>
-        {/* Left section with breadcrumb */}
-        <div className="hidden lg:block  text-gray-500 w-full lg:w-auto gap-3 ml-5">
-          <Link to="#" className="text-blue-600 hover:underline">
+
+        {/* Breadcrumbs */}
+        <div className="hidden lg:block text-gray-500 w-full lg:w-auto gap-3 ml-5">
+          <Link to="/" className="text-blue-600 hover:underline">
             Home
           </Link>
           {breadcrumbItems.map((item, index) => (
@@ -78,7 +83,7 @@ function NavigationBar() {
           ))}
         </div>
 
-        {/* Center section with search bar */}
+        {/* Search Bar */}
         <div className="hidden lg:flex w-auto flex-grow justify-center items-center">
           <input
             type="text"
@@ -87,7 +92,7 @@ function NavigationBar() {
           />
         </div>
 
-        {/* Right section with icons and user profile */}
+        {/* Right Section - Icons and Profile */}
         <div className="flex gap-4 items-center lg:gap-2">
           <button className="p-2 rounded-lg hover:bg-zinc-200">
             <FaBell className="text-xl text-gray-600" />
@@ -103,7 +108,7 @@ function NavigationBar() {
             </button>
           </div>
 
-          {/* User profile */}
+          {/* User Profile */}
           <div
             className="flex gap-2 items-center cursor-pointer hover:bg-zinc-200 p-2 rounded-lg transition duration-300"
             onClick={toggleProfileModal}
@@ -148,10 +153,12 @@ function NavigationBar() {
         open={isModalOpen}
         handleClose={toggleProfileModal}
         user={user}
-        handleUpdateProfile={undefined}
+        handleUpdateProfile={() => {
+          // Handle profile update logic here
+        }}
       />
     </div>
   );
-}
+};
 
 export default NavigationBar;

@@ -1,23 +1,30 @@
 import { useState } from "react";
 
+// Type definitions for the team object
+interface Team {
+  id: number;
+  name: string;
+  description: string;
+}
+
 function Teams() {
   // State for managing teams
-  const [teams, setTeams] = useState([
+  const [teams, setTeams] = useState<Team[]>([
     { id: 1, name: "Frontend Team", description: "Handles all frontend tasks" },
     { id: 2, name: "Backend Team", description: "Responsible for server-side logic" },
     { id: 3, name: "Design Team", description: "Focuses on UI/UX" },
   ]);
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingTeam, setEditingTeam] = useState(null);
-  const [newTeamName, setNewTeamName] = useState("");
-  const [newTeamDescription, setNewTeamDescription] = useState("");
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editingTeam, setEditingTeam] = useState<Team | null>(null);
+  const [newTeamName, setNewTeamName] = useState<string>("");
+  const [newTeamDescription, setNewTeamDescription] = useState<string>("");
 
-  const [isAdding, setIsAdding] = useState(false);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
 
-  // Handle add team
+  // Handle adding a new team
   const handleAddTeam = () => {
-    const newTeam = {
+    const newTeam: Team = {
       id: teams.length + 1,
       name: newTeamName,
       description: newTeamDescription,
@@ -28,8 +35,8 @@ function Teams() {
     setIsAdding(false);
   };
 
-  // Handle edit team
-  const handleEditTeam = (team) => {
+  // Handle editing a team
+  const handleEditTeam = (team: Team) => {
     setIsEditing(true);
     setEditingTeam(team);
     setNewTeamName(team.name);
@@ -37,20 +44,22 @@ function Teams() {
   };
 
   const handleSaveEdit = () => {
-    setTeams(
-      teams.map((team) =>
-        team.id === editingTeam.id
-          ? { ...team, name: newTeamName, description: newTeamDescription }
-          : team
-      )
-    );
-    setIsEditing(false);
-    setEditingTeam(null);
-    setNewTeamName("");
-    setNewTeamDescription("");
+    if (editingTeam) {
+      setTeams(
+        teams.map((team) =>
+          team.id === editingTeam.id
+            ? { ...team, name: newTeamName, description: newTeamDescription }
+            : team
+        )
+      );
+      setIsEditing(false);
+      setEditingTeam(null);
+      setNewTeamName("");
+      setNewTeamDescription("");
+    }
   };
 
-  const handleDeleteTeam = (id) => {
+  const handleDeleteTeam = (id: number) => {
     setTeams(teams.filter((team) => team.id !== id));
   };
 
@@ -135,7 +144,7 @@ function Teams() {
         )}
 
         {/* Edit Team Modal */}
-        {isEditing && (
+        {isEditing && editingTeam && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
             <div className="bg-white p-8 rounded shadow-lg w-full max-w-lg">
               <h3 className="text-xl font-bold mb-4">Edit Team</h3>

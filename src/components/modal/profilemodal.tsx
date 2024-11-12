@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import { useState, ChangeEvent } from "react";
 
-function ProfileModal({ open, handleClose, user, handleUpdateProfile }) {
+interface User {
+  name: string;
+  company: string;
+  profilePicture: string;
+}
+
+interface ProfileModalProps {
+  open: boolean;
+  handleClose: () => void;
+  user: User;
+  handleUpdateProfile: (updatedUser: User) => void;
+}
+
+function ProfileModal({
+  open,
+  handleClose,
+  user,
+  handleUpdateProfile,
+}: ProfileModalProps) {
   // State for managing the editable form fields
-  const [editableName, setEditableName] = useState(user.name);
-  const [editableCompany, setEditableCompany] = useState(user.company);
-  const [editableProfilePicture, setEditableProfilePicture] = useState(
+  const [editableName, setEditableName] = useState<string>(user.name);
+  const [editableCompany, setEditableCompany] = useState<string>(user.company);
+  const [editableProfilePicture, setEditableProfilePicture] = useState<string>(
     user.profilePicture
   );
 
@@ -16,6 +34,14 @@ function ProfileModal({ open, handleClose, user, handleUpdateProfile }) {
       profilePicture: editableProfilePicture,
     });
     handleClose(); // Close modal after update
+  };
+
+  // Handle profile picture change
+  const handleProfilePictureChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setEditableProfilePicture(URL.createObjectURL(file));
+    }
   };
 
   if (!open) return null;
@@ -41,10 +67,9 @@ function ProfileModal({ open, handleClose, user, handleUpdateProfile }) {
             <input
               type="file"
               className="hidden"
-              onChange={(e) =>
-                setEditableProfilePicture(URL.createObjectURL(e.target.files[0]))
-              }
+              onChange={handleProfilePictureChange}
               id="profile-picture-upload"
+              accept="image/*"
             />
             <label
               htmlFor="profile-picture-upload"

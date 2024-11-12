@@ -21,7 +21,7 @@ function SignUp() {
               <EmailInput />
 
               <div>
-                <Link to="/college">
+                <Link to="/dashboard">
                   <CustomButton label="Sign Up" />
                 </Link>
               </div>
