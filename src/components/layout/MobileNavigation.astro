@@ -1,0 +1,94 @@
+---
+import { navigation } from "../../config/navigation";
+import { siteUrl } from "../../lib/urls";
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+
+const isActive = (href: string) => {
+  const targetPath =
+    new URL(siteUrl(href), Astro.url).pathname.replace(/\/+$/, "") || "/";
+  return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`);
+};
+
+const getHref = (item: { href: string; external?: boolean }) =>
+  item.external ? item.href : siteUrl(item.href);
+---
+
+<nav
+  class="flex flex-col gap-5 bg-background text-foreground"
+  aria-label="Mobile navigation"
+>
+  {navigation.map((item) =>
+    item.items ? (
+      <section class="border-b border-border pb-4 last:border-0">
+        <h2 class="mb-2 px-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {item.label}
+        </h2>
+
+        <div class="flex flex-col gap-1">
+          {item.items.map((child) => (
+            <a
+              href={siteUrl(child.href)}
+              aria-current={isActive(child.href) ? "page" : undefined}
+              class:list={[
+                "flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium transition-colors",
+                isActive(child.href)
+                  ? "bg-primary/10 text-primary"
+                  : "text-foreground hover:bg-accent hover:text-accent-foreground",
+              ]}
+            >
+              {child.label}
+
+              {isActive(child.href) && (
+                <span
+                  class="h-1.5 w-1.5 rounded-full bg-primary"
+                  aria-hidden="true"
+                ></span>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <a
+        href={getHref(item)}
+        target={item.external ? "_blank" : undefined}
+        rel={item.external ? "noopener noreferrer" : undefined}
+        aria-current={
+          !item.external && isActive(item.href) ? "page" : undefined
+        }
+        class:list={[
+          "flex items-center justify-between rounded-md px-3 py-3 text-sm font-medium transition-colors",
+          !item.external && isActive(item.href)
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-accent hover:text-accent-foreground",
+        ]}
+      >
+        {item.label}
+
+        {item.external ? (
+          <span class="text-xs text-muted-foreground" aria-hidden="true">
+            ↗
+          </span>
+        ) : isActive(item.href) ? (
+          <span
+            class="h-1.5 w-1.5 rounded-full bg-primary"
+            aria-hidden="true"
+          ></span>
+        ) : null}
+      </a>
+    ),
+  )}
+
+  <div class="border-t border-border pt-4">
+    <a
+      href={siteUrl("docs/getting-started/")}
+      class="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+    >
+      Get started
+      <span class="ml-2" aria-hidden="true">
+        →
+      </span>
+    </a>
+  </div>
+</nav>

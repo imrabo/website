@@ -1,0 +1,220 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { siteUrl } from "../../lib/urls";
+
+const sections = [
+  {
+    number: "01",
+    title: "Getting started",
+    description:
+      "Understand ImRabo, explore the available resources and learn how to get started.",
+    href: siteUrl("docs/getting-started/"),
+    label: "Read introduction",
+  },
+  {
+    number: "02",
+    title: "Installation",
+    description:
+      "Review the installation instructions and requirements for the available ImRabo tools.",
+    href: siteUrl("docs/installation/"),
+    label: "View installation guide",
+  },
+];
+
+const developerTopics = [
+  {
+    title: "CLI",
+    description: "Command-line tooling and usage documentation.",
+    status: "Documentation pending",
+  },
+  {
+    title: "MCP",
+    description: "Model Context Protocol integration and configuration.",
+    status: "Documentation pending",
+  },
+  {
+    title: "API",
+    description: "HTTP endpoints, request formats and response contracts.",
+    status: "Documentation pending",
+  },
+  {
+    title: "Webhooks",
+    description: "Event delivery, payload formats and integration guidance.",
+    status: "Documentation pending",
+  },
+  {
+    title: "Connectors",
+    description: "External service integrations and configuration.",
+    status: "Documentation pending",
+  },
+  {
+    title: "Plugins",
+    description: "Extension architecture and development guidance.",
+    status: "Documentation pending",
+  },
+];
+---
+
+<DocsLayout
+  title="Documentation"
+  description="Technical guides, setup instructions and developer resources for ImRabo."
+>
+  <div class="space-y-14">
+    <!-- Introduction -->
+    <section class="max-w-3xl">
+      <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-3 py-1.5 text-xs font-semibold text-muted-foreground">
+        <span class="h-2 w-2 rounded-full bg-primary"></span>
+        DEVELOPER RESOURCES
+      </div>
+
+      <h2 class="text-3xl font-bold tracking-tight text-foreground">
+        Welcome to ImRabo documentation.
+      </h2>
+
+      <p class="mt-5 text-base leading-8 text-muted-foreground">
+        Find the guides and technical references you need to understand ImRabo,
+        configure its available tools and explore its developer ecosystem.
+      </p>
+
+      <p class="mt-3 text-sm leading-7 text-muted-foreground">
+        Documentation is published as individual resources become available and
+        their behavior and technical contracts are verified.
+      </p>
+    </section>
+
+    <!-- Getting Started -->
+    <section>
+      <div class="mb-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          GET STARTED
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold text-foreground">
+          Start with the fundamentals.
+        </h2>
+
+        <p class="mt-2 text-sm leading-7 text-muted-foreground">
+          Follow these guides to understand the project and its setup.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {sections.map((section) => (
+          <a
+            href={section.href}
+            class="group rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40 hover:bg-accent/40"
+          >
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-primary">
+                {section.number}
+              </span>
+
+              <span class="text-lg text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary">
+                →
+              </span>
+            </div>
+
+            <h3 class="mt-7 text-xl font-bold text-foreground">
+              {section.title}
+            </h3>
+
+            <p class="mt-3 text-sm leading-7 text-muted-foreground">
+              {section.description}
+            </p>
+
+            <p class="mt-6 text-sm font-semibold text-primary">
+              {section.label} →
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Developer Documentation -->
+    <section>
+      <div class="mb-6">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          DEVELOPER CENTER
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold text-foreground">
+          Technical documentation
+        </h2>
+
+        <p class="mt-2 text-sm leading-7 text-muted-foreground">
+          Explore the planned documentation areas for developers and integration
+          authors.
+        </p>
+      </div>
+
+      <div class="divide-y divide-border rounded-xl border border-border bg-card">
+        {developerTopics.map((topic, index) => (
+          <div class="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-start gap-4">
+              <span class="mt-0.5 text-xs font-semibold text-primary">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <div>
+                <h3 class="text-sm font-semibold text-foreground">
+                  {topic.title}
+                </h3>
+
+                <p class="mt-1 text-sm leading-6 text-muted-foreground">
+                  {topic.description}
+                </p>
+              </div>
+            </div>
+
+            <span class="w-fit rounded-full border border-border bg-muted px-3 py-1 text-xs text-muted-foreground">
+              {topic.status}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Documentation Policy -->
+    <section class="rounded-xl border border-border bg-muted/30 p-6 md:p-8">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+        DOCUMENTATION POLICY
+      </p>
+
+      <h2 class="mt-3 text-xl font-bold text-foreground">
+        Accuracy over assumptions.
+      </h2>
+
+      <p class="mt-3 text-sm leading-7 text-muted-foreground">
+        Only documented and tested behavior should be treated as supported. API
+        endpoints, authentication methods, webhook events, connector
+        capabilities and plugin contracts must be documented after their
+        implementations and technical specifications are finalized.
+      </p>
+
+      <p class="mt-3 text-sm leading-7 text-muted-foreground">
+        Planned features and incomplete documentation should not be interpreted
+        as currently available functionality.
+      </p>
+    </section>
+
+    <!-- Community CTA -->
+    <section class="flex flex-col gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-semibold text-foreground">Want to contribute?</h2>
+
+        <p class="mt-1 text-sm leading-7 text-muted-foreground">
+          Explore the ImRabo source repositories and contribute to the project.
+        </p>
+      </div>
+
+      <a
+        href="https://github.com/imrabo"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+      >
+        Explore GitHub ↗
+      </a>
+    </section>
+  </div>
+</DocsLayout>

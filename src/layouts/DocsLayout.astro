@@ -1,0 +1,100 @@
+---
+import WebsiteLayout from "./WebsiteLayout.astro";
+import { siteUrl } from "../lib/urls";
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title = "Documentation",
+  description = "ImRabo developer documentation.",
+  path = "docs/",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, "");
+
+const sidebarLinks = [
+  { label: "Overview", href: "docs/" },
+  { label: "Getting started", href: "docs/getting-started/" },
+  { label: "Installation", href: "docs/installation/" },
+];
+
+const isActive = (href: string) => {
+  const targetPath = new URL(siteUrl(href), Astro.url).pathname.replace(
+    /\/+$/,
+    "",
+  );
+  return currentPath === targetPath;
+};
+---
+
+<WebsiteLayout title={title} description={description} path={path}>
+  <section class="border-b border-border bg-muted/30">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-16 lg:px-12">
+      <p class="mb-4 text-sm font-semibold tracking-widest text-primary">
+        DEVELOPER CENTER
+      </p>
+
+      <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+        {title}
+        <span class="text-primary">.</span>
+      </h1>
+
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-background">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 md:px-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-16 lg:px-12">
+      <aside class="lg:sticky lg:top-8 lg:h-fit">
+        <div class="rounded-xl border border-border bg-card p-5">
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            Documentation
+          </h2>
+
+          <nav
+            aria-label="Documentation navigation"
+            class="flex flex-col gap-1"
+          >
+            {sidebarLinks.map((link) => (
+              <a
+                href={siteUrl(link.href)}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                class:list={[
+                  "rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+                  isActive(link.href)
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                ]}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      <article class="min-w-0">
+        <div
+          class="prose prose-neutral max-w-none dark:prose-invert
+          prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
+          prose-p:leading-7 prose-p:text-muted-foreground
+          prose-a:font-medium prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-foreground
+          prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-1 prose-code:text-foreground
+          prose-pre:overflow-x-auto prose-pre:rounded-xl prose-pre:border prose-pre:border-border prose-pre:bg-muted
+          prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground
+          prose-th:text-foreground prose-td:text-muted-foreground
+          prose-hr:border-border"
+        >
+          <slot />
+        </div>
+      </article>
+    </div>
+  </section>
+</WebsiteLayout>

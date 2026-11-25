@@ -1,0 +1,137 @@
+---
+import { socialLinks } from "../../config/social";
+import { siteUrl } from "../../lib/urls";
+
+const currentYear = new Date().getFullYear();
+
+const footerGroups = [
+  {
+    title: "Product",
+    links: [
+      { label: "Features", href: siteUrl("features/") },
+      { label: "Platforms", href: siteUrl("platforms/") },
+      { label: "Pricing", href: siteUrl("pricing/") },
+    ],
+  },
+  {
+    title: "Developers",
+    links: [
+      { label: "Documentation", href: siteUrl("docs/") },
+      { label: "Marketplace", href: siteUrl("marketplace/") },
+      {
+        label: "CLI package",
+        href: "https://www.npmjs.com/package/@imrabo/cli",
+        external: true,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/imrabo",
+        external: true,
+      },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: siteUrl("about/") },
+      { label: "Contact", href: siteUrl("contact/") },
+      { label: "Privacy", href: siteUrl("privacy/") },
+      { label: "Terms", href: siteUrl("terms/") },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-border bg-background text-foreground">
+  <!-- Main Footer -->
+  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 sm:grid-cols-2 md:px-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:gap-16 lg:px-12 lg:py-20">
+    <!-- Brand -->
+    <div class="max-w-sm">
+      <a
+        href={siteUrl("")}
+        class="inline-flex items-center text-3xl font-bold tracking-tight text-foreground transition-colors hover:text-primary"
+        aria-label="ImRabo homepage"
+      >
+        ImRabo<span class="text-primary">.</span>
+      </a>
+
+      <p class="mt-5 text-sm leading-7 text-muted-foreground">
+        Tools, integrations and documentation for building connected workflows.
+      </p>
+
+      <div class="mt-7 flex flex-wrap items-center gap-4">
+        {socialLinks.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            {social.label}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Navigation Groups -->
+    {footerGroups.map((group) => (
+      <div>
+        <h2 class="mb-5 text-sm font-semibold tracking-wide text-foreground">
+          {group.title}
+        </h2>
+
+        <nav aria-label={`${group.title} links`} class="flex flex-col gap-3">
+          {group.links.map((link) => (
+            <a
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
+              class="w-fit text-sm text-muted-foreground transition-colors hover:text-primary"
+            >
+              {link.label}
+              {link.external && (
+                <span class="ml-1 text-xs" aria-hidden="true">
+                  ↗
+                </span>
+              )}
+            </a>
+          ))}
+        </nav>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="border-t border-border">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-10 lg:px-12">
+      <p>© {currentYear} ImRabo. All rights reserved.</p>
+
+      <div class="flex flex-wrap items-center gap-5">
+        <a
+          href={siteUrl("privacy/")}
+          class="transition-colors hover:text-primary"
+        >
+          Privacy
+        </a>
+
+        <a
+          href={siteUrl("terms/")}
+          class="transition-colors hover:text-primary"
+        >
+          Terms
+        </a>
+
+        <a
+          href="https://github.com/imrabo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors hover:text-primary"
+        >
+          Open source
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

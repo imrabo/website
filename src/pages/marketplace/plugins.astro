@@ -1,0 +1,143 @@
+---
+import MarketplaceLayout from "../../layouts/MarketplaceLayout.astro";
+import { siteUrl } from "../../lib/urls";
+
+const requirements = [
+  {
+    title: "Plugin capabilities",
+    description:
+      "A clear explanation of the functionality and features provided.",
+  },
+  {
+    title: "Permissions and access",
+    description:
+      "Required permissions, data access and potential side effects.",
+  },
+  {
+    title: "Compatibility",
+    description: "Supported ImRabo versions and platform requirements.",
+  },
+  {
+    title: "Installation",
+    description: "Installation, configuration and removal instructions.",
+  },
+  {
+    title: "Publisher information",
+    description: "Publisher identity, source code and version history.",
+  },
+  {
+    title: "Maintenance status",
+    description: "Support information, known limitations and update status.",
+  },
+];
+---
+
+<MarketplaceLayout
+  title="Plugins"
+  description="Discover extensions that expand the capabilities of the ImRabo ecosystem."
+>
+  <div class="space-y-12">
+    <!-- Introduction -->
+    <section class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+        MARKETPLACE / PLUGINS
+      </p>
+
+      <h2 class="mt-4 text-3xl font-bold tracking-tight text-foreground">
+        Extend the capabilities of ImRabo.
+      </h2>
+
+      <p class="mt-4 text-base leading-8 text-muted-foreground">
+        Plugins are intended to add functionality to the ImRabo ecosystem. They
+        may introduce additional capabilities, workflow extensions or
+        specialized tools, depending on the supported plugin architecture.
+      </p>
+
+      <p class="mt-3 text-sm leading-7 text-muted-foreground">
+        Plugin availability and compatibility will be documented only after the
+        relevant functionality and publishing standards are verified.
+      </p>
+    </section>
+
+    <!-- Empty State -->
+    <section class="rounded-xl border border-dashed border-border bg-muted/20 px-6 py-12 text-center md:py-16">
+      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl border border-border bg-card text-2xl text-primary">
+        +
+      </div>
+
+      <p class="mt-6 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        DIRECTORY STATUS
+      </p>
+
+      <h2 class="mt-3 text-2xl font-bold text-foreground">
+        No verified plugins published yet.
+      </h2>
+
+      <p class="mx-auto mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
+        The plugin directory is being prepared. Public listings will be added
+        when their capabilities, compatibility, permissions, publishers and
+        source repositories have been verified.
+      </p>
+
+      <a
+        href={siteUrl("marketplace/submit/")}
+        class="mt-7 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+      >
+        Propose a plugin →
+      </a>
+    </section>
+
+    <!-- Listing Requirements -->
+    <section>
+      <div class="max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          PUBLISHING REQUIREMENTS
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold text-foreground">
+          What a plugin listing should contain
+        </h2>
+
+        <p class="mt-3 text-sm leading-7 text-muted-foreground">
+          A consistent listing format helps users understand what a plugin does
+          and whether it is appropriate for their environment.
+        </p>
+      </div>
+
+      <div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {requirements.map((item, index) => (
+          <div class="rounded-xl border border-border bg-card p-5">
+            <span class="text-xs font-semibold text-primary">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+
+            <h3 class="mt-4 font-semibold text-foreground">{item.title}</h3>
+
+            <p class="mt-2 text-sm leading-6 text-muted-foreground">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related Navigation -->
+    <section class="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h2 class="font-semibold text-foreground">
+          Looking for service integrations?
+        </h2>
+        <p class="mt-1 text-sm text-muted-foreground">
+          Explore the connector directory.
+        </p>
+      </div>
+
+      <a
+        href={siteUrl("marketplace/connectors/")}
+        class="text-sm font-semibold text-primary hover:underline"
+      >
+        Explore connectors →
+      </a>
+    </section>
+  </div>
+</MarketplaceLayout>

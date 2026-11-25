@@ -1,0 +1,109 @@
+---
+import WebsiteLayout from "../../layouts/WebsiteLayout.astro";
+import { platforms } from "../../config/platforms";
+import { siteUrl } from "../../lib/urls";
+---
+
+<WebsiteLayout
+  title="Platforms"
+  description="Explore ImRabo platform availability, supported environments and access information."
+  path="platforms/"
+>
+  <div class="space-y-16">
+    <!-- Hero -->
+    <section class="border-b border-border bg-muted/30">
+      <div class="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20 lg:px-12">
+        <p class="mb-5 text-xs font-semibold uppercase tracking-widest text-primary">
+          IMRABO PLATFORMS
+        </p>
+
+        <h1 class="max-w-3xl text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+          One ecosystem.
+          <span class="text-primary">Multiple platforms.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+          Explore the platforms through which ImRabo is intended to be accessed.
+          Availability and release information are shown explicitly for each
+          platform.
+        </p>
+
+        <p class="mt-4 text-sm text-muted-foreground">
+          A planned or unconfirmed platform is not a publicly available release.
+        </p>
+      </div>
+    </section>
+
+    <!-- Platform Cards -->
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="mb-8">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          PLATFORM DIRECTORY
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold text-foreground">
+          Explore platform availability
+        </h2>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {platforms.map((platform, index) => (
+          <article class="flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-primary">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span class="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                {platform.status}
+              </span>
+            </div>
+
+            <h3 class="mt-8 text-2xl font-bold text-foreground">
+              {platform.name}
+            </h3>
+
+            <p class="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
+              {platform.description}
+            </p>
+
+            <div class="mt-7 border-t border-border pt-5">
+              <a
+                href={
+                  platform.external ? platform.href : siteUrl(platform.href)
+                }
+                target={platform.external ? "_blank" : undefined}
+                rel={platform.external ? "noopener noreferrer" : undefined}
+                class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:underline"
+              >
+                View platform details
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Availability Policy -->
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="rounded-xl border border-border bg-muted/30 p-6 md:p-9">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          AVAILABILITY INFORMATION
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold text-foreground">
+          Clear release information.
+        </h2>
+
+        <p class="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">
+          Platform pages should only publish verified application URLs,
+          supported operating systems, system requirements, installation
+          instructions and release information. Development environments and
+          unverified distribution links should not be presented as production
+          releases.
+        </p>
+      </div>
+    </section>
+  </div>
+</WebsiteLayout>

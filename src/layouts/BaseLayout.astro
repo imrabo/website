@@ -1,0 +1,83 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = "Explore ImRabo, its tools, integrations and developer resources.",
+  image = `${import.meta.env.BASE_URL}og-image.png`,
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://imrabo.github.io");
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+
+// Resolve social image URLs while preserving the GitHub Pages base path.
+const imageURL = image.startsWith("http")
+  ? image
+  : new URL(image.replace(/^\/+/, ""), siteUrl).href;
+
+const pageTitle = title.includes("ImRabo") ? title : `${title} | ImRabo`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL.href} />
+
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ImRabo" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:alt" content="ImRabo" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+
+    <!-- Icons -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+    />
+
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+  </head>
+
+  <body class="min-h-screen bg-background font-sans text-foreground antialiased">
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+    >
+      Skip to content
+    </a>
+
+    <main id="main" class="min-h-screen bg-background text-foreground">
+      <slot />
+    </main>
+  </body>
+</html>

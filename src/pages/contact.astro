@@ -1,0 +1,148 @@
+---
+import WebsiteLayout from "../layouts/WebsiteLayout.astro";
+import { site } from "../config/site";
+import { siteUrl } from "../lib/urls";
+---
+
+<WebsiteLayout
+  title="Contact"
+  description="Contact the ImRabo project team for product questions, technical issues and collaboration enquiries."
+  path="contact/"
+>
+  <div class="space-y-14">
+    <section class="border-b border-border bg-muted/30">
+      <div class="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20 lg:px-12">
+        <p class="mb-5 text-xs font-semibold uppercase tracking-widest text-primary">
+          CONTACT IMRABO
+        </p>
+
+        <h1 class="text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+          Get in touch<span class="text-primary">.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+          Have a product question, technical issue or collaboration proposal?
+          Use the available public project channels to get in touch.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="rounded-xl border border-border bg-card p-7">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+            SOURCE CODE & ISSUES
+          </p>
+
+          <h2 class="mt-4 text-2xl font-bold text-foreground">GitHub</h2>
+
+          <p class="mt-3 text-sm leading-7 text-muted-foreground">
+            Report reproducible bugs, request changes, explore source code or
+            review discussions in the relevant public repository.
+          </p>
+
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Open GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+        </article>
+
+        <article class="rounded-xl border border-border bg-card p-7">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+            DIRECT ENQUIRIES
+          </p>
+
+          <h2 class="mt-4 text-2xl font-bold text-foreground">Email</h2>
+
+          <p class="mt-3 text-sm leading-7 text-muted-foreground">
+            Use the configured project contact address for general enquiries,
+            provided it is active and monitored.
+          </p>
+
+          <a
+            href={`mailto:${site.contactEmail}`}
+            class="mt-7 inline-flex items-center gap-2 break-all text-sm font-semibold text-primary hover:underline"
+          >
+            {site.contactEmail}
+            <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+        ENQUIRY GUIDANCE
+      </p>
+
+      <h2 class="mt-3 text-2xl font-bold text-foreground">
+        Where should you start?
+      </h2>
+
+      <div class="mt-7 divide-y divide-border rounded-xl border border-border bg-card">
+        {[
+          [
+            "Product questions",
+            "Review the product pages and published feature information.",
+            siteUrl("features/"),
+            "Explore features",
+          ],
+          [
+            "Technical issues",
+            "Include reproducible steps and relevant details when reporting an issue.",
+            site.github,
+            "Visit GitHub",
+          ],
+          [
+            "Developer resources",
+            "Review installation instructions and technical documentation.",
+            siteUrl("docs/"),
+            "Read documentation",
+          ],
+          [
+            "Collaboration",
+            "Use the available project contact channels for collaboration enquiries.",
+            `mailto:${site.contactEmail}`,
+            "Contact the team",
+          ],
+        ].map(([title, description, href, label]) => (
+          <div class="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 class="font-semibold text-foreground">{title}</h3>
+              <p class="mt-1 text-sm leading-6 text-muted-foreground">
+                {description}
+              </p>
+            </div>
+
+            <a
+              href={href}
+              target={
+                href.startsWith("https://github.com") ? "_blank" : undefined
+              }
+              rel={
+                href.startsWith("https://github.com")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+              class="shrink-0 text-sm font-semibold text-primary hover:underline"
+            >
+              {label} →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl border-t border-border px-6 pt-8 md:px-10 lg:px-12">
+      <p class="text-sm leading-7 text-muted-foreground">
+        Contact information should be kept current. Only publish an email
+        address that is actively monitored by the project team.
+      </p>
+    </section>
+  </div>
+</WebsiteLayout>

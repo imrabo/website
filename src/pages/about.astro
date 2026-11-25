@@ -1,0 +1,141 @@
+---
+import WebsiteLayout from "../layouts/WebsiteLayout.astro";
+import { siteUrl } from "../lib/urls";
+---
+
+<WebsiteLayout
+  title="About ImRabo"
+  description="Learn about the ImRabo project, its principles and development approach."
+  path="about/"
+>
+  <div class="space-y-16">
+    <section class="border-b border-border bg-muted/30">
+      <div class="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24 lg:px-12">
+        <p class="mb-5 text-xs font-semibold uppercase tracking-widest text-primary">
+          ABOUT IMRABO
+        </p>
+
+        <h1 class="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl">
+          Build useful systems.
+          <span class="text-primary">Explain them clearly.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+          ImRabo is an evolving software project focused on tools, integrations
+          and developer-facing resources for connected workflows.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-2 md:px-10 lg:px-12">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          THE PROJECT
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold text-foreground">
+          Making software easier to understand and use.
+        </h2>
+      </div>
+
+      <div class="space-y-4 text-sm leading-8 text-muted-foreground">
+        <p>
+          ImRabo brings together product development, technical resources and an
+          evolving ecosystem of tools and integrations.
+        </p>
+
+        <p>
+          The project is organized around making capabilities discoverable and
+          explaining how they work. Product pages, platform information and
+          technical documentation should reflect actual implementation rather
+          than assumptions.
+        </p>
+
+        <p>
+          As the project develops, its public resources will evolve alongside
+          verified releases and documented functionality.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+        DEVELOPMENT PRINCIPLES
+      </p>
+
+      <h2 class="mt-3 text-2xl font-bold text-foreground md:text-3xl">
+        How we approach the work.
+      </h2>
+
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        {[
+          {
+            number: "01",
+            title: "Clarity",
+            description:
+              "Product pages should describe real behavior, technical documentation should state assumptions and limitations, and availability should be explicit.",
+          },
+          {
+            number: "02",
+            title: "Practical engineering",
+            description:
+              "Software should solve identifiable problems and provide understandable implementation and usage guidance.",
+          },
+          {
+            number: "03",
+            title: "Open development",
+            description:
+              "Where repositories are public, developers can follow implementation, report issues and contribute according to repository guidelines.",
+          },
+        ].map((item) => (
+          <article class="rounded-xl border border-border bg-card p-6">
+            <span class="text-xs font-semibold text-primary">
+              {item.number}
+            </span>
+            <h3 class="mt-6 text-xl font-bold text-foreground">{item.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-muted-foreground">
+              {item.description}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="flex flex-col gap-6 rounded-xl border border-border bg-muted/30 p-7 md:flex-row md:items-center md:justify-between md:p-10">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+            OPEN DEVELOPMENT
+          </p>
+
+          <h2 class="mt-3 text-2xl font-bold text-foreground">
+            Follow the project on GitHub.
+          </h2>
+
+          <p class="mt-3 text-sm leading-7 text-muted-foreground">
+            Explore public repositories, follow implementation changes, report
+            issues and contribute where repository permissions allow.
+          </p>
+        </div>
+
+        <a
+          href="https://github.com/imrabo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex shrink-0 items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Visit GitHub ↗
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl border-t border-border px-6 pt-8 md:px-10 lg:px-12">
+      <a
+        href={siteUrl("features/")}
+        class="text-sm font-semibold text-primary hover:underline"
+      >
+        Explore ImRabo features →
+      </a>
+    </section>
+  </div>
+</WebsiteLayout>

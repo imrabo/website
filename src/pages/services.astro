@@ -1,0 +1,265 @@
+---
+import WebsiteLayout from "../layouts/WebsiteLayout.astro";
+import { siteUrl } from "../lib/urls";
+
+const services = [
+  {
+    number: "01",
+    title: "Software and Product Development",
+    description:
+      "Explore the development of software products, applications and digital tools within the ImRabo ecosystem.",
+    areas: [
+      "Product development",
+      "Application architecture",
+      "Software engineering",
+    ],
+    href: siteUrl("platforms/"),
+    action: "Explore platforms",
+  },
+  {
+    number: "02",
+    title: "Integrations and Connectivity",
+    description:
+      "Explore the direction of connecting external services, APIs and tools through integrations.",
+    areas: [
+      "External service integrations",
+      "API connectivity",
+      "Workflow integration",
+    ],
+    href: siteUrl("marketplace/connectors/"),
+    action: "Explore connectors",
+  },
+  {
+    number: "03",
+    title: "Developer Tools",
+    description:
+      "Developer-facing resources and tools intended to make working with ImRabo more accessible.",
+    areas: [
+      "Command-line tooling",
+      "Developer documentation",
+      "Technical resources",
+    ],
+    href: siteUrl("docs/"),
+    action: "Explore documentation",
+  },
+  {
+    number: "04",
+    title: "Extensions and Ecosystem",
+    description:
+      "A structured ecosystem for discovering extensions and community-built capabilities.",
+    areas: [
+      "Plugin discovery",
+      "Extension directory",
+      "Community contributions",
+    ],
+    href: siteUrl("marketplace/"),
+    action: "Explore marketplace",
+  },
+  {
+    number: "05",
+    title: "Technical Documentation",
+    description:
+      "Technical guides and references that explain available functionality, setup and implementation details.",
+    areas: [
+      "Getting started guides",
+      "Installation instructions",
+      "Technical references",
+    ],
+    href: siteUrl("docs/"),
+    action: "Read documentation",
+  },
+  {
+    number: "06",
+    title: "Platform Resources",
+    description:
+      "Information about ImRabo platform availability, supported environments and release documentation.",
+    areas: [
+      "Web platform information",
+      "Mobile platform information",
+      "Desktop platform information",
+    ],
+    href: siteUrl("platforms/"),
+    action: "Explore platforms",
+  },
+];
+---
+
+<WebsiteLayout
+  title="Services"
+  description="Explore the software, integration and developer-focused areas of the ImRabo ecosystem."
+  path="services/"
+>
+  <div class="space-y-16">
+    <!-- Hero -->
+    <section class="border-b border-border bg-muted/30">
+      <div class="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24 lg:px-12">
+        <p class="mb-5 text-xs font-semibold uppercase tracking-widest text-primary">
+          WHAT WE OFFER
+        </p>
+
+        <h1 class="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-6xl">
+          Tools, technology and resources for building connected workflows
+          <span class="text-primary">.</span>
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+          Explore the service areas and technical resources associated with
+          ImRabo, from software development and integrations to developer tools
+          and platform documentation.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href={siteUrl("features/")}
+            class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Explore capabilities →
+          </a>
+
+          <a
+            href={siteUrl("contact/")}
+            class="inline-flex items-center justify-center rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+          >
+            Contact the team
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Areas -->
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="mb-9 max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+          SERVICE AREAS
+        </p>
+
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+          Explore what ImRabo focuses on.
+        </h2>
+
+        <p class="mt-3 text-sm leading-7 text-muted-foreground">
+          These areas describe the project's focus and available resources.
+          Refer to individual product documentation for confirmed capabilities
+          and availability.
+        </p>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <article class="group flex flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40 hover:bg-accent/30">
+            <span class="text-xs font-semibold tracking-widest text-primary">
+              {service.number}
+            </span>
+
+            <h3 class="mt-7 text-xl font-bold tracking-tight text-foreground">
+              {service.title}
+            </h3>
+
+            <p class="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
+              {service.description}
+            </p>
+
+            <ul class="mt-6 space-y-2 border-t border-border pt-5">
+              {service.areas.map((area) => (
+                <li class="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span class="text-primary" aria-hidden="true">
+                    ✓
+                  </span>
+                  {area}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={service.href}
+              class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:underline"
+            >
+              {service.action}
+              <span
+                class="transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Working Principles -->
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="rounded-xl border border-border bg-muted/30 p-6 md:p-10">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+            OUR APPROACH
+          </p>
+
+          <h2 class="mt-3 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            Build useful systems. Explain them clearly.
+          </h2>
+
+          <p class="mt-4 text-sm leading-7 text-muted-foreground">
+            ImRabo emphasizes understandable software, transparent documentation
+            and clearly communicated product availability. Technical
+            capabilities should be supported by actual implementation and
+            verifiable documentation.
+          </p>
+        </div>
+
+        <div class="mt-9 grid gap-6 md:grid-cols-3">
+          <div>
+            <h3 class="font-semibold text-foreground">Documentation first</h3>
+            <p class="mt-2 text-sm leading-7 text-muted-foreground">
+              Explain setup, expected behavior and technical limitations.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-foreground">
+              Transparent availability
+            </h3>
+            <p class="mt-2 text-sm leading-7 text-muted-foreground">
+              Distinguish released capabilities from planned development.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-foreground">Open development</h3>
+            <p class="mt-2 text-sm leading-7 text-muted-foreground">
+              Encourage developers to explore public repositories and contribute
+              where permitted.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="flex flex-col gap-6 rounded-xl border border-border bg-card p-7 md:flex-row md:items-center md:justify-between md:p-10">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-widest text-primary">
+            GET IN TOUCH
+          </p>
+
+          <h2 class="mt-3 text-2xl font-bold text-foreground">
+            Have a question about ImRabo?
+          </h2>
+
+          <p class="mt-3 text-sm leading-7 text-muted-foreground">
+            Contact the project team for product information, technical
+            questions or collaboration enquiries.
+          </p>
+        </div>
+
+        <a
+          href={siteUrl("contact/")}
+          class="inline-flex shrink-0 items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Contact ImRabo →
+        </a>
+      </div>
+    </section>
+  </div>
+</WebsiteLayout>

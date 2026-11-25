@@ -1,16 +1,244 @@
 ---
+import WebsiteLayout from "../layouts/WebsiteLayout.astro";
+import { platforms } from "../config/platforms";
+import { siteUrl } from "../lib/urls";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<WebsiteLayout
+  title="Build connected workflows"
+  description="Discover ImRabo tools, platform information and developer resources."
+  path=""
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-background">
+    <div class="mx-auto grid min-h-[650px] w-full max-w-7xl content-center px-6 py-24 md:px-10 lg:px-12">
+      <div class="max-w-4xl">
+        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm text-primary">
+          <span class="h-2 w-2 rounded-full bg-primary"></span>A TOOLKIT FOR
+          CONNECTED WORKFLOWS
+        </div>
+
+        <h1 class="max-w-4xl text-5xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
+          Bring your tools and workflows
+          <span class="text-primary">closer together.</span>
+        </h1>
+
+        <p class="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          ImRabo is building a practical ecosystem of tools, integrations and
+          developer resources. Explore what is available, understand what is in
+          progress, and follow the project as it evolves.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href={siteUrl("docs/getting-started/")}
+            class="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+          >
+            Explore documentation
+            <span class="ml-2">→</span>
+          </a>
+
+          <a
+            href="https://github.com/imrabo"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center rounded-md border border-border bg-background px-7 py-3.5 text-base font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+          >
+            View on GitHub
+            <span class="ml-2">↗</span>
+          </a>
+        </div>
+
+        <p class="mt-8 text-sm text-muted-foreground">
+          Availability and capabilities are documented transparently. No
+          unlisted features are implied.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT OVERVIEW -->
+  <section class="border-y border-border bg-muted/30">
+    <div class="mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:px-12">
+      <div class="mb-12 max-w-2xl">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-primary">
+          THE PROJECT
+        </p>
+
+        <h2 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+          A clear place to understand ImRabo.
+        </h2>
+
+        <p class="mt-5 text-lg text-muted-foreground">
+          Find product information, technical documentation and ecosystem
+          updates in one place.
+        </p>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-3">
+        <article class="group rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+          <span class="text-sm font-bold tracking-widest text-primary">01</span>
+
+          <h3 class="mt-6 text-2xl font-bold text-card-foreground">
+            Understand
+          </h3>
+
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            Review the product direction, features and platform availability
+            before adopting anything.
+          </p>
+        </article>
+
+        <article class="group rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+          <span class="text-sm font-bold tracking-widest text-primary">02</span>
+
+          <h3 class="mt-6 text-2xl font-bold text-card-foreground">Build</h3>
+
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            Use the developer resources and published packages that are
+            currently available.
+          </p>
+        </article>
+
+        <article class="group rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+          <span class="text-sm font-bold tracking-widest text-primary">03</span>
+
+          <h3 class="mt-6 text-2xl font-bold text-card-foreground">Extend</h3>
+
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            Explore the marketplace concept and contribute through public
+            project repositories.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="bg-background">
+    <div class="mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:px-12">
+      <div class="mb-12 max-w-2xl">
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-primary">
+          PLATFORMS
+        </p>
+
+        <h2 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+          Choose how to explore.
+        </h2>
+
+        <p class="mt-5 text-lg text-muted-foreground">
+          Explore the available ImRabo experiences and see what is currently
+          supported.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {platforms.map((platform) => (
+          <article class="flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-md">
+            <div class="mb-5">
+              <span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                {platform.status}
+              </span>
+            </div>
+
+            <h3 class="text-2xl font-bold text-card-foreground">
+              {platform.name}
+            </h3>
+
+            <p class="mt-3 flex-1 leading-relaxed text-muted-foreground">
+              {platform.description}
+            </p>
+
+            <a
+              href={platform.external ? platform.href : siteUrl(platform.href)}
+              target={platform.external ? "_blank" : undefined}
+              rel={platform.external ? "noreferrer" : undefined}
+              class="mt-6 inline-flex items-center font-semibold text-primary hover:underline"
+            >
+              Learn more <span class="ml-2">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVELOPERS -->
+  <section class="border-y border-border bg-muted/30">
+    <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-24 md:px-10 lg:grid-cols-2 lg:px-12">
+      <div>
+        <p class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-primary">
+          FOR DEVELOPERS
+        </p>
+
+        <h2 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+          Start with the documentation.
+        </h2>
+
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          Find current setup guidance and technical notes. Documentation will
+          expand as capabilities are implemented and released.
+        </p>
+
+        <a
+          href={siteUrl("docs/")}
+          class="mt-8 inline-flex items-center font-bold text-primary hover:underline"
+        >
+          Browse documentation <span class="ml-2">→</span>
+        </a>
+      </div>
+
+      <div class="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+        <div class="flex items-center gap-2 border-b border-border px-5 py-4">
+          <span class="h-3 w-3 rounded-full bg-red-400"></span>
+          <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
+          <span class="h-3 w-3 rounded-full bg-green-500"></span>
+          <span class="ml-3 text-sm text-muted-foreground">
+            ImRabo principles
+          </span>
+        </div>
+
+        <div class="p-7 md:p-10">
+          <p class="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-primary">
+            PROJECT PRINCIPLE
+          </p>
+
+          <pre class="overflow-x-auto whitespace-pre-wrap font-mono text-base leading-loose text-foreground md:text-lg"><code>document what exists
+
+label what is planned
+
+verify before you integrate</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB CTA -->
+  <section class="bg-background">
+    <div class="mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:px-12">
+      <div class="overflow-hidden rounded-2xl bg-primary px-8 py-16 text-primary-foreground md:px-16 md:py-20">
+        <p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] opacity-80">
+          OPEN DEVELOPMENT
+        </p>
+
+        <h2 class="max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+          Follow the work. Help shape what comes next.
+        </h2>
+
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed opacity-85">
+          Explore the public ImRabo repositories, review open issues and
+          contribute through GitHub.
+        </p>
+
+        <a
+          href="https://github.com/imrabo"
+          target="_blank"
+          rel="noreferrer"
+          class="mt-9 inline-flex items-center rounded-md bg-white px-7 py-3.5 font-bold text-primary transition-colors hover:bg-white/90"
+        >
+          Explore GitHub <span class="ml-2">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</WebsiteLayout>

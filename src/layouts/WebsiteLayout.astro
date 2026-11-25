@@ -1,0 +1,113 @@
+---
+import "../styles/global.css";
+
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+
+import { seo } from "../lib/seo";
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title = "A connected workspace",
+  description = "Explore ImRabo tools, platform information and developer resources.",
+  path = "",
+  image = "/web/og-image.png",
+  noIndex = false,
+} = Astro.props;
+
+const meta = seo(title, description, path);
+
+const canonicalUrl = meta.canonical;
+const imageUrl = new URL(image, "https://imrabo.github.io").toString();
+const pageTitle = meta.title;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ImRabo" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <!-- Browser -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/web/favicon.svg" />
+  </head>
+
+  <body class="min-h-screen bg-background font-sans text-foreground antialiased">
+    <!-- Accessibility -->
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+    >
+      Skip to content
+    </a>
+
+    <!-- Global Header -->
+    <Header />
+
+    <!-- Main Content -->
+    <main id="main" class="min-h-[70vh] bg-background text-foreground">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+  </body>
+  <script is:inline>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("imrabo-theme");
+
+        const theme =
+          savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+
+        document.documentElement.classList.toggle("dark", theme === "dark");
+
+        document.documentElement.style.colorScheme = theme;
+      } catch {
+        // CSS defaults to light mode if browser storage is unavailable.
+      }
+    })();
+  </script>
+</html>
