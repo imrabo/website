@@ -1,7 +1,6 @@
 ---
 import WebsiteLayout from "../layouts/WebsiteLayout.astro";
 import { siteUrl } from "../lib/urls";
-import { imraboPlans } from "../config/pricing";
 
 const providers = [
   { name: "ChatGPT", individual: "Free; Plus $20/mo; Pro from $100/mo", team: "Business and Enterprise", strength: "General assistant, reasoning, research and agent features", url: "https://chatgpt.com/pricing/" },
@@ -43,7 +42,7 @@ const comparisonRows = [
             { key: "team", audience: "teams", name: "Team", price: "Coming soon", cadence: "Per-seat plan", description: "Shared workspaces and coordinated AI workflows for teams.", features: ["Team workspace and members", "Shared agents and workflows", "Shared connector configuration", "Usage visibility and team controls"], action: "Explore Team", href: "pricing/", note: "Seat pricing and minimum seats are TBA." },
             { key: "enterprise-team", audience: "teams", name: "Enterprise", price: "Custom", cadence: "Contract-based", description: "A tailored deployment for advanced security, governance and organizational needs.", features: ["Identity and access requirements", "Governance assessment", "Deployment and integration review", "Commercial discussion"], action: "Contact sales", href: "contact/", note: "Scope and commitments agreed individually." }
           ].filter((plan) => plan.audience === "both" || plan.audience === "individual" || plan.audience === "teams").map((plan) => (
-            <article data-plan-card data-audience={plan.audience} class:list={["pricing-plan-card flex flex-col p-7 md:p-8", plan.key === "enterprise-team" ? "hidden" : "", plan.key === "enterprise-individual" ? ""]}>
+            <article data-plan-card data-audience={plan.audience} class:list={["pricing-plan-card flex flex-col p-7 md:p-8"]}>
               <p class="text-sm font-medium text-[#8da6bf]">{plan.name}</p>
               <div class="mt-5 flex items-baseline gap-2"><span class="text-4xl font-semibold tracking-tight text-white">{plan.price}</span>{plan.price === "$0" && <span class="text-xs text-[#929ba5]">/ month</span>}</div>
               <p class="mt-1 text-xs text-[#929ba5]">{plan.cadence}</p>
