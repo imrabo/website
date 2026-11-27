@@ -31,7 +31,7 @@ export const pricingPlans = [
     monthlyInr: "₹499",
     annualInr: "₹4,990",
     monthlyUsd: "$6",
-    annualUsd: "$6",
+    annualUsd: "Contact sales",
     cadence: "/month",
     audience: "For individual professionals and developers.",
     features: [
@@ -58,7 +58,7 @@ export const pricingPlans = [
     monthlyInr: "₹1,499",
     annualInr: "₹14,990",
     monthlyUsd: "$19",
-    annualUsd: "$19",
+    annualUsd: "Contact sales",
     cadence: "/month",
     audience: "For teams building with AI agents.",
     features: [
