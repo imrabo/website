@@ -76,7 +76,7 @@ import { pricingPlans, commercialPolicies, illustrativeRevenueTargets } from "..
       const updatePricing = () => {
         pricingRoot.querySelectorAll<HTMLElement>("[data-plan-price]").forEach((price) => {
           const suffix = billing === "monthly" ? "monthly" : "annual";
-          price.textContent = price.dataset[currency + "-" + suffix] ?? "Contact sales";
+          price.textContent = price.getAttribute("data-" + currency + "-" + suffix) ?? "Contact sales";
         });
         pricingRoot.querySelectorAll<HTMLElement>("[data-plan-cadence]").forEach((cadence) => {
           const key = cadence.closest<HTMLElement>("[data-plan-card]")?.dataset.planKey;
@@ -84,8 +84,8 @@ import { pricingPlans, commercialPolicies, illustrativeRevenueTargets } from "..
         });
         pricingRoot.querySelectorAll<HTMLElement>("[data-plan-subprice]").forEach((subprice) => {
           const key = subprice.closest<HTMLElement>("[data-plan-card]")?.dataset.planKey;
-          if (key === "solo") subprice.textContent = billing === "annual" && currency === "inr" ? "₹4,990/year · Save approximately 17%" : currency === "usd" && billing === "annual" ? "Annual billing: contact sales" : currency === "usd" ? "$6 billed monthly" : "₹4,990/year · Save approximately 17%";
-          else if (key === "team") subprice.textContent = billing === "annual" && currency === "inr" ? "₹14,990/year · Save approximately 17%" : currency === "usd" && billing === "annual" ? "Annual billing: contact sales" : currency === "usd" ? "$19 billed monthly" : "₹14,990/year · Save approximately 17%";
+          if (key === "solo") subprice.textContent = billing === "annual" && currency === "inr" ? "Save approximately 17%" : currency === "usd" && billing === "annual" ? "Annual billing: contact sales" : currency === "usd" ? "$6 billed monthly" : "₹4,990/year · Save approximately 17%";
+          else if (key === "team") subprice.textContent = billing === "annual" && currency === "inr" ? "Save approximately 17%" : currency === "usd" && billing === "annual" ? "Annual billing: contact sales" : currency === "usd" ? "$19 billed monthly" : "₹14,990/year · Save approximately 17%";
           else if (key === "free") subprice.textContent = "Forever";
           else subprice.textContent = "Custom licensing";
         });
