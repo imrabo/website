@@ -2,272 +2,55 @@
 import { navigation } from "../../config/navigation";
 import { siteUrl } from "../../lib/urls";
 import ThemeToggle from "../shared/ThemeToggle.astro";
-
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
-
 const isActive = (href: string) => {
-  const target =
-    new URL(siteUrl(href), Astro.url).pathname.replace(/\/+$/, "") || "/";
-  return currentPath === target || currentPath.startsWith(`${target}/`);
+  const target = new URL(siteUrl(href), Astro.url).pathname.replace(/\/+$/, "") || "/";
+  return currentPath === target || currentPath.startsWith(target + "/");
 };
-
-const getHref = (item: { href: string; external?: boolean }) =>
-  item.external ? item.href : siteUrl(item.href);
+const getHref = (item: { href: string; external?: boolean }) => item.external ? item.href : siteUrl(item.href);
 ---
-
-<header class="sticky top-0 z-50 border-b border-border bg-background/95 text-foreground backdrop-blur supports-[backdrop-filter]:bg-background/80">
-  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-6 md:px-10 lg:px-12">
-    <!-- Brand -->
-    <a
-      href={siteUrl("")}
-      aria-label="ImRabo home"
-      class="shrink-0 text-2xl font-bold tracking-tight text-foreground transition-colors hover:text-primary"
-    >
-      ImRabo<span class="text-primary">.</span>
-    </a>
-
-    <!-- Desktop Navigation -->
+<header class="sticky top-0 z-50 border-b border-border/80 bg-background/85 text-foreground backdrop-blur-xl">
+  <div class="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-5 px-6 md:px-10 lg:px-12">
+    <a href={siteUrl("")} aria-label="ImRabo home" class="group flex shrink-0 items-center gap-2.5"><img src={siteUrl("mascot-face-only.png")} alt="" aria-hidden="true" class="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-110"/><span class="text-[1.35rem] font-bold tracking-[-.06em] text-foreground">ImRabo<span class="text-primary">.</span></span></a>
     <nav aria-label="Main navigation" class="hidden items-center gap-1 lg:flex">
-      {navigation.map((item) =>
-        item.items ? (
-          <div class="group relative">
-            <a
-              href={siteUrl(item.items[0].href)}
-              class:list={[
-                "inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                item.items.some((child) => isActive(child.href))
-                  ? "text-primary"
-                  : "text-muted-foreground",
-              ]}
-              aria-haspopup="true"
-            >
-              {item.label}
-              <svg
-                aria-hidden="true"
-                class="h-4 w-4 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </a>
-
-            <div class="invisible absolute left-0 top-full z-50 min-w-56 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-              <div class="rounded-xl border border-border bg-popover p-2 text-popover-foreground shadow-lg">
-                {item.items.map((child) => (
-                  <a
-                    href={siteUrl(child.href)}
-                    class:list={[
-                      "block rounded-md px-3 py-2.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
-                      isActive(child.href)
-                        ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground",
-                    ]}
-                    aria-current={isActive(child.href) ? "page" : undefined}
-                  >
-                    {child.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <a
-            href={getHref(item)}
-            target={item.external ? "_blank" : undefined}
-            rel={item.external ? "noopener noreferrer" : undefined}
-            aria-current={
-              !item.external && isActive(item.href) ? "page" : undefined
-            }
-            class:list={[
-              "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-              !item.external && isActive(item.href)
-                ? "text-primary"
-                : "text-muted-foreground",
-            ]}
-          >
-            {item.label}
-            {item.external && (
-              <span class="ml-1 text-xs" aria-hidden="true">
-                ↗
-              </span>
-            )}
-          </a>
-        ),
-      )}
+      {navigation.map((item) => item.items ? (
+        <div class="group relative">
+          <a href={siteUrl(item.items[0].href)} class:list={["inline-flex items-center gap-2 rounded-full px-4 py-2 text-[13px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground", item.items.some((child) => isActive(child.href)) ? "text-primary" : "text-muted-foreground"]} aria-haspopup="true">{item.label}<svg aria-hidden="true" class="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+          <div class="invisible absolute left-0 top-full z-50 min-w-56 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"><div class="rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-xl">{item.items.map((child) => <a href={siteUrl(child.href)} class:list={["block rounded-xl px-4 py-3 text-sm transition-colors hover:bg-accent hover:text-accent-foreground", isActive(child.href) ? "bg-accent text-accent-foreground" : "text-muted-foreground"]} aria-current={isActive(child.href) ? "page" : undefined}>{child.label}</a>)}</div></div>
+        </div>
+      ) : <a href={getHref(item)} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener noreferrer" : undefined} aria-current={!item.external && isActive(item.href) ? "page" : undefined} class:list={["rounded-full px-4 py-2 text-[13px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground", !item.external && isActive(item.href) ? "text-primary" : "text-muted-foreground"]}>{item.label}{item.external && <span class="ml-1 text-xs" aria-hidden="true">↗</span>}</a>)}
     </nav>
-
-    <!-- Desktop CTA -->
-    <div class="flex items-center gap-3">
-      <ThemeToggle />
-
-      <a
-        href={siteUrl("docs/getting-started/")}
-        class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-      >
-        Get started
-      </a>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <button
-      class="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border px-3 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground lg:hidden"
-      type="button"
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-      aria-label="Open navigation menu"
-      data-menu-toggle
-    >
-      <svg
-        data-menu-icon
-        aria-hidden="true"
-        class="h-5 w-5"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-      >
-        <path d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-      <span data-menu-label>Menu</span>
-    </button>
+    <div class="flex items-center gap-3"><ThemeToggle/><a href={siteUrl("docs/getting-started/")} class="hidden items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-xs font-semibold text-background transition hover:-translate-y-0.5 hover:opacity-85 sm:inline-flex">Get started ↗</a></div>
+    <button class="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border px-3 text-sm font-medium text-foreground transition-colors hover:bg-accent lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu" data-menu-toggle><svg data-menu-icon aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span data-menu-label>Menu</span></button>
   </div>
 </header>
-
-<!-- Mobile Navigation -->
-<nav
-  id="mobile-nav"
-  aria-label="Mobile navigation"
-  class="hidden border-b border-border bg-background px-6 py-5 lg:hidden md:px-10"
-  data-mobile-nav
-  inert
->
+<nav id="mobile-nav" aria-label="Mobile navigation" class="hidden border-b border-border bg-background px-6 py-5 lg:hidden md:px-10" data-mobile-nav inert>
   <div class="mx-auto flex max-w-7xl flex-col gap-1">
-    {navigation.map((item) =>
-      item.items ? (
-        <div class="py-2">
-          <p class="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            {item.label}
-          </p>
-
-          <div class="flex flex-col gap-1">
-            {item.items.map((child) => (
-              <a
-                href={siteUrl(child.href)}
-                aria-current={isActive(child.href) ? "page" : undefined}
-                class:list={[
-                  "rounded-md px-3 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-                  isActive(child.href)
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground",
-                ]}
-              >
-                {child.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <a
-          href={getHref(item)}
-          target={item.external ? "_blank" : undefined}
-          rel={item.external ? "noopener noreferrer" : undefined}
-          class="rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-        >
-          {item.label}
-          {item.external && (
-            <span class="ml-1 text-xs" aria-hidden="true">
-              ↗
-            </span>
-          )}
-        </a>
-      ),
-    )}
-
-    <div class="mt-3 border-t border-border pt-4">
-      <a
-        href={siteUrl("docs/getting-started/")}
-        class="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-      >
-        Get started
-        <span class="ml-2" aria-hidden="true">
-          →
-        </span>
-      </a>
-    </div>
+    {navigation.map((item) => item.items ? <div class="py-2"><p class="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{item.label}</p><div class="flex flex-col gap-1">{item.items.map((child) => <a href={siteUrl(child.href)} aria-current={isActive(child.href) ? "page" : undefined} class:list={["rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground", isActive(child.href) ? "bg-primary/10 text-primary" : "text-muted-foreground"]}>{child.label}</a>)}</div></div> : <a href={getHref(item)} target={item.external ? "_blank" : undefined} rel={item.external ? "noopener noreferrer" : undefined} class="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground">{item.label}</a>)}
+    <div class="mt-3 border-t border-border pt-4"><a href={siteUrl("docs/getting-started/")} class="inline-flex w-full items-center justify-center rounded-full bg-foreground px-4 py-3 text-sm font-semibold text-background">Get started →</a></div>
   </div>
 </nav>
-
 <script>
-  const toggle =
-    document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const mobileNav = document.querySelector<HTMLElement>("[data-mobile-nav]");
   const menuIcon = document.querySelector<SVGElement>("[data-menu-icon]");
   const menuLabel = document.querySelector<HTMLElement>("[data-menu-label]");
-
   const closeMenu = () => {
     if (!toggle || !mobileNav) return;
-
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Open navigation menu");
-    mobileNav.classList.add("hidden");
-    mobileNav.inert = true;
-
+    toggle.setAttribute("aria-expanded", "false"); toggle.setAttribute("aria-label", "Open navigation menu");
+    mobileNav.classList.add("hidden"); mobileNav.inert = true;
     if (menuLabel) menuLabel.textContent = "Menu";
-
-    if (menuIcon) {
-      menuIcon.innerHTML = `
-        <path d="M4 6h16M4 12h16M4 18h16" />
-      `;
-    }
+    if (menuIcon) menuIcon.innerHTML = '<path d="M4 6h16M4 12h16M4 18h16"/>';
   };
-
   const openMenu = () => {
     if (!toggle || !mobileNav) return;
-
-    toggle.setAttribute("aria-expanded", "true");
-    toggle.setAttribute("aria-label", "Close navigation menu");
-    mobileNav.classList.remove("hidden");
-    mobileNav.inert = false;
-
+    toggle.setAttribute("aria-expanded", "true"); toggle.setAttribute("aria-label", "Close navigation menu");
+    mobileNav.classList.remove("hidden"); mobileNav.inert = false;
     if (menuLabel) menuLabel.textContent = "Close";
-
-    if (menuIcon) {
-      menuIcon.innerHTML = `
-        <path d="m18 6-12 12M6 6l12 12" />
-      `;
-    }
+    if (menuIcon) menuIcon.innerHTML = '<path d="m18 6-12 12M6 6l12 12"/>';
   };
-
-  toggle?.addEventListener("click", () => {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-
-    if (expanded) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  mobileNav?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenu();
-      toggle?.focus();
-    }
-  });
-
-  const desktopQuery = window.matchMedia("(min-width: 1024px)");
-
-  desktopQuery.addEventListener("change", (event) => {
-    if (event.matches) closeMenu();
-  });
+  toggle?.addEventListener("click", () => toggle.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu());
+  mobileNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") { closeMenu(); toggle?.focus(); } });
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", (event) => { if (event.matches) closeMenu(); });
 </script>

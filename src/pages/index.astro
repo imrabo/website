@@ -3,242 +3,77 @@ import WebsiteLayout from "../layouts/WebsiteLayout.astro";
 import { platforms } from "../config/platforms";
 import { siteUrl } from "../lib/urls";
 ---
-
-<WebsiteLayout
-  title="Build connected workflows"
-  description="Discover ImRabo tools, platform information and developer resources."
-  path=""
->
-  <!-- HERO -->
-  <section class="relative overflow-hidden bg-background">
-    <div class="mx-auto grid min-h-[650px] w-full max-w-7xl content-center px-6 py-24 md:px-10 lg:px-12">
-      <div class="max-w-4xl">
-        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm text-primary">
-          <span class="h-2 w-2 rounded-full bg-primary"></span>A TOOLKIT FOR
-          CONNECTED WORKFLOWS
+<WebsiteLayout title="Your AI workspace, agents and tools — connected" description="ImRabo brings AI assistants, autonomous agents, connected tools and workflows together in one extensible ecosystem." path="">
+  <section class="relative isolate overflow-hidden bg-[#090b12] text-white">
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div class="absolute -left-48 -top-48 h-[34rem] w-[34rem] rounded-full bg-blue-600/20 blur-[110px]"></div>
+      <div class="absolute right-[-10rem] top-[-8rem] h-[38rem] w-[38rem] rounded-full bg-violet-600/20 blur-[130px]"></div>
+      <div class="absolute bottom-[-18rem] left-1/3 h-[32rem] w-[32rem] rounded-full bg-cyan-500/10 blur-[120px]"></div>
+      <div class="hero-grid absolute inset-0 opacity-30"></div>
+    </div>
+    <div class="mx-auto grid min-h-[720px] w-full max-w-7xl items-center gap-8 px-6 pb-20 pt-20 md:px-10 lg:grid-cols-[1.05fr_.95fr] lg:px-12 lg:pb-28 lg:pt-24">
+      <div class="relative z-10 max-w-3xl">
+        <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-xs font-semibold tracking-wide text-white/80 backdrop-blur"><span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]"></span>THE CONNECTED AI ECOSYSTEM <span class="ml-1 rounded-full bg-white/10 px-2 py-0.5 text-[10px] text-white/60">IMRABO</span></div>
+        <h1 class="max-w-3xl text-5xl font-semibold leading-[1.04] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[5.4rem]">Your AI can do <span class="block bg-gradient-to-r from-sky-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">more than chat.</span> Make it happen.</h1>
+        <p class="mt-8 max-w-xl text-base leading-8 text-white/65 md:text-lg">Bring assistants, autonomous agents, tools and workflows into one connected workspace. Think through a task, delegate the work and stay in control from start to finish.</p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href={siteUrl("docs/getting-started/")} class="inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-sky-100">Explore ImRabo <span>↗</span></a>
+          <a href="https://github.com/imrabo" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-white/[0.04] px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/10">Explore the ecosystem <span>→</span></a>
         </div>
+        <div class="mt-12 flex flex-wrap items-center gap-x-7 gap-y-3 text-xs font-medium text-white/45"><span>● Open ecosystem</span><span>● Model flexibility</span><span>● Human in control</span></div>
+      </div>
+      <div class="relative mx-auto flex w-full max-w-[590px] items-center justify-center lg:min-h-[590px]">
+        <div class="absolute inset-8 rounded-full border border-white/[0.07]"></div><div class="absolute inset-16 rounded-full border border-dashed border-white/[0.09]"></div><div class="absolute h-72 w-72 rounded-full bg-blue-500/20 blur-[90px]"></div>
+        <img src={siteUrl("full-mascot-with-gradiant.png")} alt="ImRabo mascot" class="relative z-10 max-h-[500px] w-full object-contain drop-shadow-[0_25px_70px_rgba(59,130,246,.28)]"/>
+        <div class="absolute left-0 top-[17%] z-20 hidden rounded-2xl border border-white/15 bg-[#151925]/90 px-4 py-3 shadow-2xl backdrop-blur md:block"><div class="flex items-center gap-3"><span class="grid h-9 w-9 place-items-center rounded-xl bg-blue-500/20 text-lg">✳</span><div><p class="text-xs font-semibold text-white">Main agent</p><p class="mt-0.5 text-[10px] text-white/45">Planning the task</p></div><span class="ml-2 h-2 w-2 rounded-full bg-emerald-400"></span></div></div>
+        <div class="absolute bottom-[15%] right-0 z-20 hidden rounded-2xl border border-white/15 bg-[#151925]/90 px-4 py-3 shadow-2xl backdrop-blur md:block"><div class="flex items-center gap-3"><span class="grid h-9 w-9 place-items-center rounded-xl bg-violet-500/20 text-lg">⌘</span><div><p class="text-xs font-semibold text-white">Connected tools</p><p class="mt-0.5 text-[10px] text-white/45">One workflow, many tools</p></div><span class="ml-2 text-xs text-emerald-300">Ready</span></div></div>
+      </div>
+    </div>
+    <div class="mx-auto max-w-7xl px-6 pb-10 md:px-10 lg:px-12"><div class="flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between"><span>One workspace for the way you work with AI.</span><a href="#ecosystem" class="inline-flex items-center gap-2 font-semibold text-white/65 hover:text-white">Discover the ecosystem ↓</a></div></div>
+  </section>
 
-        <h1 class="max-w-4xl text-5xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
-          Bring your tools and workflows
-          <span class="text-primary">closer together.</span>
-        </h1>
-
-        <p class="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          ImRabo is building a practical ecosystem of tools, integrations and
-          developer resources. Explore what is available, understand what is in
-          progress, and follow the project as it evolves.
-        </p>
-
-        <div class="mt-10 flex flex-wrap gap-4">
-          <a
-            href={siteUrl("docs/getting-started/")}
-            class="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-          >
-            Explore documentation
-            <span class="ml-2">→</span>
-          </a>
-
-          <a
-            href="https://github.com/imrabo"
-            target="_blank"
-            rel="noreferrer"
-            class="inline-flex items-center justify-center rounded-md border border-border bg-background px-7 py-3.5 text-base font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-          >
-            View on GitHub
-            <span class="ml-2">↗</span>
-          </a>
-        </div>
-
-        <p class="mt-8 text-sm text-muted-foreground">
-          Availability and capabilities are documented transparently. No
-          unlisted features are implied.
-        </p>
+  <section class="bg-background py-24 md:py-32" id="ecosystem">
+    <div class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
+      <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-end"><div><p class="eyebrow">A NEW WAY TO WORK WITH AI</p><h2 class="mt-5 max-w-xl text-4xl font-semibold leading-tight tracking-tight text-foreground md:text-5xl">From a single prompt to a complete workflow.</h2></div><p class="max-w-2xl text-base leading-8 text-muted-foreground lg:justify-self-end">ImRabo connects the pieces of an AI workflow. Start with a conversation, bring in the right tools, assign focused work to agents and keep the whole process understandable.</p></div>
+      <div class="mt-14 grid gap-4 lg:grid-cols-12">
+        <article class="feature-panel relative min-h-[390px] overflow-hidden rounded-3xl border border-border bg-[#101522] p-8 text-white lg:col-span-7 md:p-10"><div class="relative z-10 max-w-md"><span class="text-xs font-semibold uppercase tracking-[.2em] text-sky-300">01 / AI workspace</span><h3 class="mt-6 text-3xl font-semibold tracking-tight md:text-4xl">A workspace that understands your context.</h3><p class="mt-4 text-sm leading-7 text-white/60">Bring conversations, model choices, tools and working context together. Move from asking questions to getting meaningful work done.</p><a href={siteUrl("features/")} class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-sky-300 hover:text-white">Explore the workspace →</a></div><div class="workspace-visual absolute -bottom-16 right-[-3rem] hidden w-[58%] rotate-[-5deg] rounded-2xl border border-white/15 bg-[#1b2333] p-4 shadow-2xl sm:block"><div class="flex items-center gap-2 border-b border-white/10 pb-3"><span class="h-2 w-2 rounded-full bg-rose-400"></span><span class="h-2 w-2 rounded-full bg-amber-300"></span><span class="h-2 w-2 rounded-full bg-emerald-400"></span><span class="ml-2 text-[10px] text-white/40">ImRabo workspace</span></div><div class="mt-5 flex gap-3"><div class="h-32 w-10 rounded-lg bg-white/5"></div><div class="flex-1 space-y-3"><div class="h-3 w-2/3 rounded bg-white/15"></div><div class="h-3 w-full rounded bg-white/10"></div><div class="h-3 w-4/5 rounded bg-white/10"></div><div class="mt-6 rounded-xl border border-sky-400/20 bg-sky-400/10 p-4"><div class="h-2 w-1/3 rounded bg-sky-300/60"></div><div class="mt-3 h-2 w-full rounded bg-white/10"></div><div class="mt-2 h-2 w-4/5 rounded bg-white/10"></div></div></div></div></div></article>
+        <article class="feature-panel relative min-h-[390px] overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-violet-950 via-[#21183c] to-[#111322] p-8 text-white lg:col-span-5 md:p-10"><span class="text-xs font-semibold uppercase tracking-[.2em] text-violet-300">02 / Autonomous agents</span><h3 class="mt-6 max-w-sm text-3xl font-semibold tracking-tight">Give the work to agents. Keep the direction.</h3><p class="mt-4 max-w-sm text-sm leading-7 text-white/60">Coordinate a main agent and focused sub-agents for research, coding, analysis and execution.</p><div class="agent-orbit absolute -bottom-16 -right-10 h-64 w-64 rounded-full border border-violet-300/20"><div class="absolute left-1/2 top-[-15px] grid h-12 w-12 -translate-x-1/2 place-items-center rounded-2xl border border-violet-200/30 bg-violet-400/20 text-xl">✳</div><div class="absolute bottom-8 left-[-18px] grid h-10 w-10 place-items-center rounded-xl border border-white/15 bg-white/10">⌘</div><div class="absolute bottom-8 right-[-18px] grid h-10 w-10 place-items-center rounded-xl border border-white/15 bg-white/10">⌁</div></div></article>
+        <article class="feature-panel relative min-h-[330px] overflow-hidden rounded-3xl border border-border bg-[#eef4ff] p-8 text-slate-950 dark:bg-[#131d30] dark:text-white lg:col-span-5 md:p-10"><span class="text-xs font-semibold uppercase tracking-[.2em] text-blue-600 dark:text-blue-300">03 / Connected tools</span><h3 class="mt-6 max-w-sm text-3xl font-semibold tracking-tight">Your tools. Your models. Your way.</h3><p class="mt-4 max-w-sm text-sm leading-7 text-slate-600 dark:text-white/55">Connect services and APIs through an extensible integration layer. Keep your workflow adaptable.</p><div class="mt-8 flex flex-wrap gap-2"><span class="rounded-xl border border-blue-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-white">MCP</span><span class="rounded-xl border border-blue-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-white">APIs</span><span class="rounded-xl border border-blue-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-white">Connectors</span></div></article>
+        <article class="feature-panel relative min-h-[330px] overflow-hidden rounded-3xl border border-border bg-[#f4f0e9] p-8 text-slate-950 dark:bg-[#1c1b1a] dark:text-white lg:col-span-7 md:p-10"><div class="relative z-10 max-w-md"><span class="text-xs font-semibold uppercase tracking-[.2em] text-orange-700 dark:text-orange-300">04 / Computer and browser workflows</span><h3 class="mt-6 text-3xl font-semibold tracking-tight">Let AI work across the digital workspace.</h3><p class="mt-4 text-sm leading-7 text-slate-600 dark:text-white/55">A direction for research, browser-based tasks and multi-step workflows, with clear visibility into what an agent is doing.</p><a href={siteUrl("features/")} class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-orange-700 dark:text-orange-300">See product direction →</a></div><div class="absolute bottom-[-2rem] right-[-2rem] hidden w-[45%] rotate-3 rounded-2xl border border-black/10 bg-white p-4 shadow-xl dark:border-white/10 dark:bg-[#282725] sm:block"><div class="flex items-center gap-2 border-b border-black/10 pb-3 dark:border-white/10"><span class="h-2 w-2 rounded-full bg-red-400"></span><span class="h-2 w-2 rounded-full bg-amber-400"></span><span class="h-2 w-2 rounded-full bg-green-400"></span><span class="ml-auto text-[10px] text-slate-400">Browser task</span></div><div class="mt-4 space-y-3"><div class="h-3 w-3/4 rounded bg-slate-200 dark:bg-white/10"></div><div class="h-20 rounded-xl bg-gradient-to-br from-orange-100 to-amber-50 dark:from-orange-400/20 dark:to-amber-300/10"></div><div class="h-2 w-full rounded bg-slate-100 dark:bg-white/10"></div><div class="h-2 w-2/3 rounded bg-slate-100 dark:bg-white/10"></div></div></div></article>
       </div>
     </div>
   </section>
 
-  <!-- PROJECT OVERVIEW -->
-  <section class="border-y border-border bg-muted/30">
-    <div class="mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:px-12">
-      <div class="mb-12 max-w-2xl">
-        <p class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-primary">
-          THE PROJECT
-        </p>
+  <section class="border-y border-border bg-muted/30 py-24 md:py-28"><div class="mx-auto grid max-w-7xl gap-14 px-6 md:px-10 lg:grid-cols-[.8fr_1.2fr] lg:px-12"><div><p class="eyebrow">HOW IT COMES TOGETHER</p><h2 class="mt-5 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">One task.<br/>A coordinated team.</h2><p class="mt-6 max-w-md text-base leading-8 text-muted-foreground">The goal is not to add more AI interfaces. It is to make the work between them feel connected, observable and manageable.</p><a href={siteUrl("docs/")} class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">Read the documentation →</a></div>
+    <div class="rounded-3xl border border-border bg-card p-5 shadow-sm md:p-8"><div class="flex items-center justify-between border-b border-border pb-5"><div><p class="text-sm font-semibold text-foreground">Example workflow</p><p class="mt-1 text-xs text-muted-foreground">A coordinated task lifecycle</p></div><span class="rounded-full bg-emerald-500/10 px-3 py-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-300">Illustrative</span></div><div class="mt-7 space-y-5">
+      <div class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-300">01</span><div class="flex-1"><h3 class="text-sm font-semibold text-foreground">You set the goal</h3><p class="mt-1 text-sm leading-6 text-muted-foreground">Describe the outcome, constraints and context.</p></div><span class="self-center text-xs text-muted-foreground">Input</span></div><div class="ml-5 h-5 border-l border-dashed border-border"></div>
+      <div class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-300">02</span><div class="flex-1"><h3 class="text-sm font-semibold text-foreground">The main agent plans</h3><p class="mt-1 text-sm leading-6 text-muted-foreground">Break the goal into steps and identify the right capabilities.</p></div><span class="self-center text-xs text-muted-foreground">Plan</span></div><div class="ml-5 h-5 border-l border-dashed border-border"></div>
+      <div class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-cyan-500/10 text-cyan-700 dark:text-cyan-300">03</span><div class="flex-1"><h3 class="text-sm font-semibold text-foreground">Agents and tools do focused work</h3><p class="mt-1 text-sm leading-6 text-muted-foreground">Delegate tasks, use connected tools and collect results.</p></div><span class="self-center text-xs text-muted-foreground">Work</span></div><div class="ml-5 h-5 border-l border-dashed border-border"></div>
+      <div class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">04</span><div class="flex-1"><h3 class="text-sm font-semibold text-foreground">You review the outcome</h3><p class="mt-1 text-sm leading-6 text-muted-foreground">Inspect progress, outputs and decisions before moving forward.</p></div><span class="self-center text-xs text-muted-foreground">Review</span></div>
+    </div></div></div></section>
 
-        <h2 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-          A clear place to understand ImRabo.
-        </h2>
+  <section class="bg-background py-24 md:py-28"><div class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12"><div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div class="max-w-2xl"><p class="eyebrow">THE IMRABO ECOSYSTEM</p><h2 class="mt-5 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">One foundation. Every surface.</h2><p class="mt-5 text-base leading-8 text-muted-foreground">Explore the platforms and developer resources that make up the wider ecosystem.</p></div><a href={siteUrl("platforms/")} class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">View all platforms →</a></div><div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{platforms.map((platform) => (<article class="rounded-2xl border border-border bg-card p-6 transition duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"><span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">{platform.status}</span><h3 class="mt-7 text-xl font-semibold text-card-foreground">{platform.name}</h3><p class="mt-3 min-h-20 text-sm leading-7 text-muted-foreground">{platform.description}</p><a href={platform.external ? platform.href : siteUrl(platform.href)} target={platform.external ? "_blank" : undefined} rel={platform.external ? "noreferrer" : undefined} class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">Explore →</a></article>))}</div></div></section>
 
-        <p class="mt-5 text-lg text-muted-foreground">
-          Find product information, technical documentation and ecosystem
-          updates in one place.
-        </p>
+  <section class="bg-[#090b12] py-24 text-white md:py-28"><div class="mx-auto grid max-w-7xl items-center gap-10 px-6 md:px-10 lg:grid-cols-[1fr_auto] lg:px-12"><div class="max-w-3xl"><p class="text-xs font-semibold uppercase tracking-[.22em] text-sky-300">BUILT TO BE EXTENDED</p><h2 class="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">Bring your ideas.<br/><span class="text-white/45">Build what’s next.</span></h2><p class="mt-6 max-w-xl text-base leading-8 text-white/55">Explore the repositories, follow the implementation and help shape an open, connected AI ecosystem.</p><div class="mt-9 flex flex-wrap gap-3"><a href="https://github.com/imrabo" target="_blank" rel="noreferrer" class="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 hover:bg-sky-100">Explore GitHub ↗</a><a href={siteUrl("docs/")} class="rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/10">Read the docs →</a></div></div><img src={siteUrl("mascot-face-only.png")} alt="" aria-hidden="true" class="mx-auto w-44 opacity-90 drop-shadow-[0_0_55px_rgba(96,165,250,.35)] md:w-56"/></div></section>
+
+  <section class="mascot-story relative overflow-hidden border-y border-border bg-muted/30 py-24 md:py-32">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-[.9fr_1.1fr] lg:px-12">
+      <div class="relative mx-auto flex min-h-[390px] w-full max-w-lg items-center justify-center">
+        <div class="absolute h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute inset-10 rounded-full border border-primary/10"></div>
+        <img src={siteUrl("mascot-image-persenation.png")} alt="ImRabo mascot introducing the ecosystem" loading="lazy" class="mascot-float relative z-10 max-h-[430px] w-full object-contain"/>
+        <span class="absolute bottom-4 right-3 rounded-full border border-border bg-card/90 px-4 py-2 text-xs font-semibold text-muted-foreground shadow-lg backdrop-blur">Your AI companion</span>
       </div>
-
-      <div class="grid gap-5 md:grid-cols-3">
-        <article class="group rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-          <span class="text-sm font-bold tracking-widest text-primary">01</span>
-
-          <h3 class="mt-6 text-2xl font-bold text-card-foreground">
-            Understand
-          </h3>
-
-          <p class="mt-4 leading-relaxed text-muted-foreground">
-            Review the product direction, features and platform availability
-            before adopting anything.
-          </p>
-        </article>
-
-        <article class="group rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-          <span class="text-sm font-bold tracking-widest text-primary">02</span>
-
-          <h3 class="mt-6 text-2xl font-bold text-card-foreground">Build</h3>
-
-          <p class="mt-4 leading-relaxed text-muted-foreground">
-            Use the developer resources and published packages that are
-            currently available.
-          </p>
-        </article>
-
-        <article class="group rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-          <span class="text-sm font-bold tracking-widest text-primary">03</span>
-
-          <h3 class="mt-6 text-2xl font-bold text-card-foreground">Extend</h3>
-
-          <p class="mt-4 leading-relaxed text-muted-foreground">
-            Explore the marketplace concept and contribute through public
-            project repositories.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLATFORMS -->
-  <section class="bg-background">
-    <div class="mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:px-12">
-      <div class="mb-12 max-w-2xl">
-        <p class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-primary">
-          PLATFORMS
-        </p>
-
-        <h2 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-          Choose how to explore.
-        </h2>
-
-        <p class="mt-5 text-lg text-muted-foreground">
-          Explore the available ImRabo experiences and see what is currently
-          supported.
-        </p>
-      </div>
-
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {platforms.map((platform) => (
-          <article class="flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-md">
-            <div class="mb-5">
-              <span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                {platform.status}
-              </span>
-            </div>
-
-            <h3 class="text-2xl font-bold text-card-foreground">
-              {platform.name}
-            </h3>
-
-            <p class="mt-3 flex-1 leading-relaxed text-muted-foreground">
-              {platform.description}
-            </p>
-
-            <a
-              href={platform.external ? platform.href : siteUrl(platform.href)}
-              target={platform.external ? "_blank" : undefined}
-              rel={platform.external ? "noreferrer" : undefined}
-              class="mt-6 inline-flex items-center font-semibold text-primary hover:underline"
-            >
-              Learn more <span class="ml-2">→</span>
-            </a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- DEVELOPERS -->
-  <section class="border-y border-border bg-muted/30">
-    <div class="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-24 md:px-10 lg:grid-cols-2 lg:px-12">
       <div>
-        <p class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-primary">
-          FOR DEVELOPERS
-        </p>
-
-        <h2 class="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-          Start with the documentation.
-        </h2>
-
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-          Find current setup guidance and technical notes. Documentation will
-          expand as capabilities are implemented and released.
-        </p>
-
-        <a
-          href={siteUrl("docs/")}
-          class="mt-8 inline-flex items-center font-bold text-primary hover:underline"
-        >
-          Browse documentation <span class="ml-2">→</span>
-        </a>
-      </div>
-
-      <div class="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-        <div class="flex items-center gap-2 border-b border-border px-5 py-4">
-          <span class="h-3 w-3 rounded-full bg-red-400"></span>
-          <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
-          <span class="h-3 w-3 rounded-full bg-green-500"></span>
-          <span class="ml-3 text-sm text-muted-foreground">
-            ImRabo principles
-          </span>
-        </div>
-
-        <div class="p-7 md:p-10">
-          <p class="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-primary">
-            PROJECT PRINCIPLE
-          </p>
-
-          <pre class="overflow-x-auto whitespace-pre-wrap font-mono text-base leading-loose text-foreground md:text-lg"><code>document what exists
-
-label what is planned
-
-verify before you integrate</code></pre>
+        <p class="eyebrow">MEET YOUR IMRABO COMPANION</p>
+        <h2 class="mt-5 max-w-xl text-4xl font-semibold leading-tight tracking-tight text-foreground md:text-5xl">A recognizable guide through a connected AI world.</h2>
+        <p class="mt-6 max-w-xl text-base leading-8 text-muted-foreground">The ImRabo mascot is part of the product identity: a friendly guide across the workspace, agent workflows, integrations and learning resources. It gives the ecosystem a consistent face without getting in the way of the work.</p>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl border border-border bg-card p-5"><p class="text-sm font-semibold text-card-foreground">A personal workspace</p><p class="mt-2 text-sm leading-6 text-muted-foreground">A clear place to start conversations and organize work.</p></div>
+          <div class="rounded-2xl border border-border bg-card p-5"><p class="text-sm font-semibold text-card-foreground">A connected ecosystem</p><p class="mt-2 text-sm leading-6 text-muted-foreground">Tools and capabilities that can grow with your needs.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GITHUB CTA -->
-  <section class="bg-background">
-    <div class="mx-auto w-full max-w-7xl px-6 py-24 md:px-10 lg:px-12">
-      <div class="overflow-hidden rounded-2xl bg-primary px-8 py-16 text-primary-foreground md:px-16 md:py-20">
-        <p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] opacity-80">
-          OPEN DEVELOPMENT
-        </p>
-
-        <h2 class="max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-          Follow the work. Help shape what comes next.
-        </h2>
-
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed opacity-85">
-          Explore the public ImRabo repositories, review open issues and
-          contribute through GitHub.
-        </p>
-
-        <a
-          href="https://github.com/imrabo"
-          target="_blank"
-          rel="noreferrer"
-          class="mt-9 inline-flex items-center rounded-md bg-white px-7 py-3.5 font-bold text-primary transition-colors hover:bg-white/90"
-        >
-          Explore GitHub <span class="ml-2">↗</span>
-        </a>
-      </div>
-    </div>
-  </section>
 </WebsiteLayout>
