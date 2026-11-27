@@ -3,62 +3,42 @@ import WebsiteLayout from "../layouts/WebsiteLayout.astro";
 import { siteUrl } from "../lib/urls";
 import { pricingPlans, commercialPolicies, illustrativeRevenueTargets } from "../config/pricing";
 ---
-<WebsiteLayout title="ImRabo Pricing — Free, Solo, Team and Enterprise" description="Choose ImRabo Free with BYOK, Solo, Team or Enterprise. Compare India and international pricing, plan features and commercial policies." path="pricing/">
+<WebsiteLayout title="ImRabo Pricing — Free, Solo, Team and Enterprise" description="Choose ImRabo Free with BYOK, Solo, Team or Enterprise. Compare monthly India and international pricing." path="pricing/">
   <div class="space-y-16 pb-20">
     <section class="bg-[#0b0c0e] px-5 pb-16 pt-16 text-white md:pb-20 md:pt-20">
       <div class="mx-auto max-w-6xl">
-        <div class="text-center">
-          <p class="font-mono text-[10px] font-semibold uppercase tracking-[.24em] text-[#7898b8]">IMRABO PLANS</p>
-          <h1 class="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Simple pricing. Your AI, your way.</h1>
-          <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#9aa2ab] md:text-base">Start free with your own API keys. Upgrade for cloud synchronization, collaboration and enterprise control.</p>
-          <a href={siteUrl("contact/")} class="mt-6 inline-flex rounded-full bg-[#292b2e] px-7 py-3 text-sm font-medium text-white transition hover:bg-[#35383c]">Contact sales</a>
-        </div>
-        <div class="mt-10 flex flex-col items-center gap-3">
-          <div class="pricing-switch inline-flex" role="group" aria-label="Choose billing currency">
-            <button type="button" data-currency-tab="inr" aria-pressed="true" class="rounded-full px-6 py-2 text-xs font-semibold text-white transition">India (INR)</button>
-            <button type="button" data-currency-tab="usd" aria-pressed="false" class="rounded-full px-6 py-2 text-xs font-semibold text-[#8f98a2] transition">International (USD)</button>
-          </div>
-          <div class="pricing-switch inline-flex" role="group" aria-label="Choose billing period">
-            <button type="button" data-billing-tab="monthly" aria-pressed="true" class="rounded-full px-5 py-2 text-xs font-semibold text-white transition">Monthly</button>
-            <button type="button" data-billing-tab="annual" aria-pressed="false" class="rounded-full px-5 py-2 text-xs font-semibold text-[#8f98a2] transition">Yearly <span class="text-[#8da6bf]">· Save ~17%</span></button>
-          </div>
-          <p data-billing-note class="text-center text-[11px] text-[#858e98]">Annual India billing. Prices shown in INR.</p>
-        </div>
+        <div class="text-center"><p class="font-mono text-[10px] font-semibold uppercase tracking-[.24em] text-[#7898b8]">IMRABO PLANS</p><h1 class="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Simple pricing. Your AI, your way.</h1><p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#9aa2ab] md:text-base">Start free with your own API keys. Upgrade for cloud synchronization, collaboration and enterprise control.</p><a href={siteUrl("contact/")} class="mt-6 inline-flex rounded-full bg-[#292b2e] px-7 py-3 text-sm font-medium text-white transition hover:bg-[#35383c]">Contact sales</a></div>
+        <div class="mt-10 flex justify-center"><div class="pricing-switch inline-flex" role="group" aria-label="Choose pricing currency"><button type="button" data-currency-tab="inr" aria-pressed="true" class="rounded-full px-6 py-2 text-xs font-semibold text-white transition">India (INR)</button><button type="button" data-currency-tab="usd" aria-pressed="false" class="rounded-full px-6 py-2 text-xs font-semibold text-[#8f98a2] transition">International (USD)</button></div></div>
+        <p data-currency-note class="mt-3 text-center text-[11px] text-[#858e98]">Monthly pricing · India</p>
         <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-pricing-cards>
           {pricingPlans.map((plan) => (
             <article data-plan-card data-plan-key={plan.key} class:list={["pricing-plan-card relative flex flex-col p-6 md:p-7", plan.key === "solo" ? "ring-1 ring-[#7898b8]/60" : ""]}>
               {plan.key === "solo" && <span class="absolute -top-3 left-6 rounded-full bg-[#527da8] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Recommended</span>}
-              <p class="text-xs font-medium text-[#8da6bf]">{plan.eyebrow}</p>
-              <h2 class="mt-3 text-xl font-semibold text-white">{plan.name}</h2>
-              <div class="mt-5 flex min-h-12 items-baseline gap-2"><span class="text-3xl font-semibold tracking-tight text-white" data-plan-price data-inr-monthly={plan.monthlyInr} data-inr-annual={plan.annualInr} data-usd-monthly={plan.monthlyUsd} data-usd-annual={plan.annualUsd}>{plan.monthlyInr}</span><span class="text-xs text-[#929ba5]" data-plan-cadence>{plan.key === "free" || plan.key === "enterprise" ? "" : "/month"}</span></div>
-              <p class="mt-1 min-h-5 text-xs text-[#929ba5]" data-plan-subprice>{plan.key === "solo" ? "₹4,990/year · Save approximately 17%" : plan.key === "team" ? "₹14,990/year · Save approximately 17%" : plan.cadence}</p>
-              <p class="mt-4 min-h-[52px] text-sm leading-6 text-[#a0a7af]">{plan.audience}</p>
+              <p class="text-xs font-medium text-[#8da6bf]">{plan.eyebrow}</p><h2 class="mt-3 text-xl font-semibold text-white">{plan.name}</h2>
+              <div class="mt-5 flex min-h-12 items-baseline gap-2"><span class="text-3xl font-semibold tracking-tight text-white" data-plan-price data-inr={plan.monthlyInr} data-usd={plan.monthlyUsd}>{plan.monthlyInr}</span><span class="text-xs text-[#929ba5]" data-plan-cadence>{plan.key === "free" || plan.key === "enterprise" ? "" : "/month"}</span></div>
+              <p class="mt-1 min-h-5 text-xs text-[#929ba5]">{plan.cadence}</p><p class="mt-4 min-h-[52px] text-sm leading-6 text-[#a0a7af]">{plan.audience}</p>
               <a href={siteUrl(plan.href)} class="mt-5 inline-flex w-full justify-center rounded-full bg-white px-4 py-3 text-sm font-medium text-[#111315] transition hover:bg-[#dce7f1]">{plan.action}</a>
-              <p class="mt-7 text-xs font-semibold text-white">Includes:</p>
-              <ul class="mt-3 flex-1 space-y-2.5 text-sm leading-6 text-[#929ba5]">{plan.features.map((feature) => <li class="flex gap-2.5"><span class="text-[#7898b8]">✓</span><span>{feature}</span></li>)}</ul>
+              <p class="mt-7 text-xs font-semibold text-white">Includes:</p><ul class="mt-3 flex-1 space-y-2.5 text-sm leading-6 text-[#929ba5]">{plan.features.map((feature) => <li class="flex gap-2.5"><span class="text-[#7898b8]">✓</span><span>{feature}</span></li>)}</ul>
               <p class="mt-6 border-t border-white/10 pt-4 text-xs leading-5 text-[#858e98]">{plan.note}</p>
             </article>
           ))}
         </div>
         <div class="mt-5 rounded-[1.35rem] bg-[#191a1c] p-5 text-sm leading-6 text-[#a0a7af] md:px-7"><strong class="text-white">BYOK stays yours on every plan.</strong> Bring your own model API key and pay the provider directly for inference. ImRabo subscriptions cover workspace and platform capabilities, not model-provider API consumption.</div>
-        <p class="mt-4 text-center text-[11px] leading-5 text-[#737d87]">Prices are introductory launch pricing. Taxes, including applicable GST, and payment processing charges may be additional. International annual billing is not published; contact sales for details.</p>
+        <p class="mt-4 text-center text-[11px] leading-5 text-[#737d87]">Prices are introductory monthly launch pricing. Taxes, including applicable GST, and payment processing charges may be additional.</p>
       </div>
     </section>
-    <section class="mx-auto max-w-6xl px-6 md:px-10">
-      <div class="max-w-3xl"><p class="eyebrow">INTERNATIONAL PRICING</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">One product, regional pricing</h2><p class="mt-3 text-sm leading-7 text-muted-foreground">Monthly prices are listed for India and international customers. Annual prices are currently specified for India only.</p></div>
-      <div class="mt-7 overflow-x-auto rounded-2xl border border-border bg-card"><table class="w-full min-w-[520px] border-collapse text-left text-sm"><thead><tr class="border-b border-border bg-muted/60"><th class="px-5 py-4 font-semibold text-foreground">Plan</th><th class="px-5 py-4 font-semibold text-foreground">India</th><th class="px-5 py-4 font-semibold text-foreground">International</th></tr></thead><tbody>
+    <section class="mx-auto max-w-6xl px-6 md:px-10"><div class="max-w-3xl"><p class="eyebrow">INTERNATIONAL PRICING</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">One product, regional pricing</h2><p class="mt-3 text-sm leading-7 text-muted-foreground">Monthly prices for India and international customers.</p></div>
+      <div class="mt-7 overflow-x-auto rounded-2xl border border-border bg-card"><table class="w-full min-w-[520px] border-collapse text-left text-sm"><thead><tr class="border-b border-border bg-muted/60"><th class="px-5 py-4 font-semibold text-foreground">Plan</th><th class="px-5 py-4 font-semibold text-foreground">India / month</th><th class="px-5 py-4 font-semibold text-foreground">International / month</th></tr></thead><tbody>
         <tr class="border-b border-border"><th class="px-5 py-4 font-medium text-foreground">Free</th><td class="px-5 py-4 text-muted-foreground">₹0</td><td class="px-5 py-4 text-muted-foreground">$0</td></tr>
-        <tr class="border-b border-border"><th class="px-5 py-4 font-medium text-foreground">Solo</th><td class="px-5 py-4 text-muted-foreground">₹499/month</td><td class="px-5 py-4 text-muted-foreground">$6/month</td></tr>
-        <tr class="border-b border-border"><th class="px-5 py-4 font-medium text-foreground">Team</th><td class="px-5 py-4 text-muted-foreground">₹1,499/month</td><td class="px-5 py-4 text-muted-foreground">$19/month</td></tr>
+        <tr class="border-b border-border"><th class="px-5 py-4 font-medium text-foreground">Solo</th><td class="px-5 py-4 text-muted-foreground">₹499</td><td class="px-5 py-4 text-muted-foreground">$6</td></tr>
+        <tr class="border-b border-border"><th class="px-5 py-4 font-medium text-foreground">Team</th><td class="px-5 py-4 text-muted-foreground">₹1,499</td><td class="px-5 py-4 text-muted-foreground">$19</td></tr>
         <tr><th class="px-5 py-4 font-medium text-foreground">Enterprise</th><td class="px-5 py-4 text-muted-foreground">Custom</td><td class="px-5 py-4 text-muted-foreground">Custom</td></tr>
       </tbody></table></div>
     </section>
-    <section class="mx-auto max-w-6xl px-6 md:px-10">
-      <div class="max-w-3xl"><p class="eyebrow">COMMERCIAL POLICIES</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">What your subscription covers</h2><p class="mt-3 text-sm leading-7 text-muted-foreground">Keep inference costs separate from platform subscriptions. These policies define the intended commercial boundaries across plans.</p></div>
+    <section class="mx-auto max-w-6xl px-6 md:px-10"><div class="max-w-3xl"><p class="eyebrow">COMMERCIAL POLICIES</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">What your subscription covers</h2><p class="mt-3 text-sm leading-7 text-muted-foreground">Keep inference costs separate from platform subscriptions.</p></div>
       <div class="mt-7 overflow-x-auto rounded-2xl border border-border bg-card"><table class="w-full min-w-[520px] border-collapse text-left text-sm"><thead><tr class="border-b border-border bg-muted/60"><th class="px-5 py-4 font-semibold text-foreground">Item</th><th class="px-5 py-4 font-semibold text-foreground">Final decision</th></tr></thead><tbody>{commercialPolicies.map(([item, decision]) => <tr class="border-b border-border last:border-0"><th class="px-5 py-4 font-medium text-foreground">{item}</th><td class="px-5 py-4 leading-6 text-muted-foreground">{decision}</td></tr>)}</tbody></table></div>
     </section>
-    <section class="mx-auto max-w-6xl px-6 md:px-10">
-      <div class="max-w-3xl"><p class="eyebrow">ILLUSTRATIVE REVENUE TARGETS</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">A simple recurring revenue model</h2><p class="mt-3 text-sm leading-7 text-muted-foreground">Illustrative monthly subscription revenue at the listed India monthly prices. These are targets, not forecasts or guaranteed outcomes. Annual billing, taxes, fees, churn, discounts and operating costs are excluded.</p></div>
+    <section class="mx-auto max-w-6xl px-6 md:px-10"><div class="max-w-3xl"><p class="eyebrow">ILLUSTRATIVE REVENUE TARGETS</p><h2 class="mt-3 text-3xl font-semibold tracking-tight text-foreground">A simple recurring revenue model</h2><p class="mt-3 text-sm leading-7 text-muted-foreground">Illustrative monthly subscription revenue at the listed India monthly prices. These are targets, not forecasts or guaranteed outcomes. Taxes, fees, churn, discounts and operating costs are excluded.</p></div>
       <div class="mt-7 overflow-x-auto rounded-2xl border border-border bg-card"><table class="w-full min-w-[480px] border-collapse text-left text-sm"><thead><tr class="border-b border-border bg-muted/60"><th class="px-5 py-4 font-semibold text-foreground">Paying customers</th><th class="px-5 py-4 font-semibold text-foreground">Monthly revenue</th></tr></thead><tbody>{illustrativeRevenueTargets.map((target) => <tr class="border-b border-border last:border-0"><th class="px-5 py-4 font-medium text-foreground">{target.customers}</th><td class="px-5 py-4 font-semibold tabular-nums text-foreground">{target.revenue}</td></tr>)}</tbody></table></div>
     </section>
     <section class="mx-auto max-w-6xl px-6 md:px-10"><div class="rounded-3xl bg-[#0b0c0e] px-7 py-12 text-white md:px-12 md:py-16"><p class="text-xs font-bold uppercase tracking-[.2em] text-[#7898b8]">START WITH BYOK</p><div class="mt-5 grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><div><h2 class="max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl">Free to explore. Ready to scale.</h2><p class="mt-5 max-w-2xl text-sm leading-7 text-white/60">Start locally with your own API keys. Upgrade when you need cloud synchronization, team collaboration or enterprise controls.</p></div><a href={siteUrl("docs/getting-started/")} class="inline-flex w-fit rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111315] hover:bg-[#dce7f1]">Get started for free</a></div></div></section>
@@ -66,35 +46,15 @@ import { pricingPlans, commercialPolicies, illustrativeRevenueTargets } from "..
   <script>
     const pricingRoot = document.querySelector("[data-pricing-cards]")?.parentElement;
     if (pricingRoot) {
-      let currency = "inr";
-      let billing = "monthly";
       const currencyTabs = Array.from(pricingRoot.querySelectorAll<HTMLButtonElement>("[data-currency-tab]"));
-      const billingTabs = Array.from(pricingRoot.querySelectorAll<HTMLButtonElement>("[data-billing-tab]"));
-      const setTabs = (tabs: HTMLButtonElement[], selected: string, attribute: "currencyTab" | "billingTab") => {
-        tabs.forEach((tab) => { const active = tab.dataset[attribute] === selected; tab.setAttribute("aria-pressed", String(active)); tab.classList.toggle("text-white", active); tab.classList.toggle("text-[#8f98a2]", !active); });
+      const updateCurrency = (currency: string) => {
+        currencyTabs.forEach((tab) => { const active = tab.dataset.currencyTab === currency; tab.setAttribute("aria-pressed", String(active)); tab.classList.toggle("text-white", active); tab.classList.toggle("text-[#8f98a2]", !active); });
+        pricingRoot.querySelectorAll<HTMLElement>("[data-plan-price]").forEach((price) => { price.textContent = price.getAttribute("data-" + currency) ?? "Contact sales"; });
+        const note = pricingRoot.querySelector<HTMLElement>("[data-currency-note]");
+        if (note) note.textContent = currency === "inr" ? "Monthly pricing · India" : "Monthly pricing · International";
       };
-      const updatePricing = () => {
-        pricingRoot.querySelectorAll<HTMLElement>("[data-plan-price]").forEach((price) => {
-          const suffix = billing === "monthly" ? "monthly" : "annual";
-          price.textContent = price.getAttribute("data-" + currency + "-" + suffix) ?? "Contact sales";
-        });
-        pricingRoot.querySelectorAll<HTMLElement>("[data-plan-cadence]").forEach((cadence) => {
-          const key = cadence.closest<HTMLElement>("[data-plan-card]")?.dataset.planKey;
-          cadence.textContent = key === "free" || key === "enterprise" || (billing === "annual" && currency === "usd") ? "" : billing === "monthly" ? "/month" : "/year";
-        });
-        pricingRoot.querySelectorAll<HTMLElement>("[data-plan-subprice]").forEach((subprice) => {
-          const key = subprice.closest<HTMLElement>("[data-plan-card]")?.dataset.planKey;
-          if (key === "solo") subprice.textContent = billing === "annual" && currency === "inr" ? "Save approximately 17%" : currency === "usd" && billing === "annual" ? "Annual billing: contact sales" : currency === "usd" ? "$6 billed monthly" : "₹4,990/year · Save approximately 17%";
-          else if (key === "team") subprice.textContent = billing === "annual" && currency === "inr" ? "Save approximately 17%" : currency === "usd" && billing === "annual" ? "Annual billing: contact sales" : currency === "usd" ? "$19 billed monthly" : "₹14,990/year · Save approximately 17%";
-          else if (key === "free") subprice.textContent = "Forever";
-          else subprice.textContent = "Custom licensing";
-        });
-        const note = pricingRoot.querySelector<HTMLElement>("[data-billing-note]");
-        if (note) note.textContent = currency === "inr" ? billing === "annual" ? "Annual India billing selected. Prices shown in INR." : "Monthly India billing selected. Annual plans save approximately 17%." : billing === "annual" ? "International annual billing is not published. Contact sales for details." : "International monthly billing selected. Prices shown in USD.";
-      };
-      currencyTabs.forEach((tab) => tab.addEventListener("click", () => { currency = tab.dataset.currencyTab ?? "inr"; setTabs(currencyTabs, currency, "currencyTab"); updatePricing(); }));
-      billingTabs.forEach((tab) => tab.addEventListener("click", () => { billing = tab.dataset.billingTab ?? "monthly"; setTabs(billingTabs, billing, "billingTab"); updatePricing(); }));
-      updatePricing();
+      currencyTabs.forEach((tab) => tab.addEventListener("click", () => updateCurrency(tab.dataset.currencyTab ?? "inr")));
+      updateCurrency("inr");
     }
   </script>
 </WebsiteLayout>
