@@ -55,4 +55,25 @@ import { siteUrl } from "../lib/urls";
   <section class="bg-background py-24 md:py-28"><div class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12"><div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"><div class="max-w-2xl"><p class="eyebrow">THE IMRABO ECOSYSTEM</p><h2 class="mt-5 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">One foundation. Every surface.</h2><p class="mt-5 text-base leading-8 text-muted-foreground">Explore the platforms and developer resources that make up the wider ecosystem.</p></div><a href={siteUrl("platforms/")} class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">View all platforms →</a></div><div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{platforms.map((platform) => (<article class="rounded-2xl border border-border bg-card p-6 transition duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"><span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">{platform.status}</span><h3 class="mt-7 text-xl font-semibold text-card-foreground">{platform.name}</h3><p class="mt-3 min-h-20 text-sm leading-7 text-muted-foreground">{platform.description}</p><a href={platform.external ? platform.href : siteUrl(platform.href)} target={platform.external ? "_blank" : undefined} rel={platform.external ? "noreferrer" : undefined} class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">Explore →</a></article>))}</div></div></section>
 
   <section class="bg-[#090b12] py-24 text-white md:py-28"><div class="mx-auto grid max-w-7xl items-center gap-10 px-6 md:px-10 lg:grid-cols-[1fr_auto] lg:px-12"><div class="max-w-3xl"><p class="text-xs font-semibold uppercase tracking-[.22em] text-sky-300">BUILT TO BE EXTENDED</p><h2 class="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">Bring your ideas.<br/><span class="text-white/45">Build what’s next.</span></h2><p class="mt-6 max-w-xl text-base leading-8 text-white/55">Explore the repositories, follow the implementation and help shape an open, connected AI ecosystem.</p><div class="mt-9 flex flex-wrap gap-3"><a href="https://github.com/imrabo" target="_blank" rel="noreferrer" class="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 hover:bg-sky-100">Explore GitHub ↗</a><a href={siteUrl("docs/")} class="rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/10">Read the docs →</a></div></div><img src={siteUrl("mascot-face-only.png")} alt="" aria-hidden="true" class="mx-auto w-44 opacity-90 drop-shadow-[0_0_55px_rgba(96,165,250,.35)] md:w-56"/></div></section>
+
+  <section class="mascot-story relative overflow-hidden border-y border-border bg-muted/30 py-24 md:py-32">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-[.9fr_1.1fr] lg:px-12">
+      <div class="relative mx-auto flex min-h-[390px] w-full max-w-lg items-center justify-center">
+        <div class="absolute h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute inset-10 rounded-full border border-primary/10"></div>
+        <img src={siteUrl("mascot-image-persenation.png")} alt="ImRabo mascot introducing the ecosystem" loading="lazy" class="mascot-float relative z-10 max-h-[430px] w-full object-contain"/>
+        <span class="absolute bottom-4 right-3 rounded-full border border-border bg-card/90 px-4 py-2 text-xs font-semibold text-muted-foreground shadow-lg backdrop-blur">Your AI companion</span>
+      </div>
+      <div>
+        <p class="eyebrow">MEET YOUR IMRABO COMPANION</p>
+        <h2 class="mt-5 max-w-xl text-4xl font-semibold leading-tight tracking-tight text-foreground md:text-5xl">A recognizable guide through a connected AI world.</h2>
+        <p class="mt-6 max-w-xl text-base leading-8 text-muted-foreground">The ImRabo mascot is part of the product identity: a friendly guide across the workspace, agent workflows, integrations and learning resources. It gives the ecosystem a consistent face without getting in the way of the work.</p>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl border border-border bg-card p-5"><p class="text-sm font-semibold text-card-foreground">A personal workspace</p><p class="mt-2 text-sm leading-6 text-muted-foreground">A clear place to start conversations and organize work.</p></div>
+          <div class="rounded-2xl border border-border bg-card p-5"><p class="text-sm font-semibold text-card-foreground">A connected ecosystem</p><p class="mt-2 text-sm leading-6 text-muted-foreground">Tools and capabilities that can grow with your needs.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </WebsiteLayout>
