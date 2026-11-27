@@ -1,7 +1,6 @@
 ---
 import WebsiteLayout from "../layouts/WebsiteLayout.astro";
 import { siteUrl } from "../lib/urls";
-import { imraboPlans } from "../config/pricing";
 
 const providers = [
   { name: "ChatGPT", individual: "Free; Plus $20/mo; Pro from $100/mo", team: "Business and Enterprise", strength: "General assistant, reasoning, research and agent features", url: "https://chatgpt.com/pricing/" },
@@ -21,31 +20,67 @@ const comparisonRows = [
 ---
 <WebsiteLayout title="ImRabo Pricing — Free BYOK, Solo, Team and Enterprise" description="Compare ImRabo's Free with BYOK, Solo, Team and Enterprise plans, and review public pricing from leading AI providers." path="pricing/">
   <div class="space-y-20 pb-20">
-    <section class="relative isolate overflow-hidden border-b border-border bg-[#090b12] text-white">
-      <div class="hero-grid absolute inset-0 -z-10 opacity-30"></div><div class="absolute -right-24 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-violet-600/20 blur-[110px]"></div>
-      <div class="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28 lg:px-12">
-        <p class="text-xs font-bold uppercase tracking-[.22em] text-sky-300">IMRABO PRICING</p>
-        <h1 class="mt-6 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl">Start free with your own AI keys.<br/><span class="bg-gradient-to-r from-sky-300 to-violet-400 bg-clip-text text-transparent">Grow into a team.</span></h1>
-        <p class="mt-7 max-w-2xl text-base leading-8 text-white/65 md:text-lg">Four ways to use ImRabo, from a self-managed personal workspace to an organization-wide deployment. Choose the level of service that fits how you work.</p>
-        <div class="mt-9 flex flex-wrap gap-3"><a href="#imrabo-plans" class="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-950 hover:bg-sky-100">Explore ImRabo plans ↓</a><a href="#provider-comparison" class="rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/10">Compare providers</a></div>
+    <section class="bg-[#0b0c0e] px-5 pb-20 pt-16 text-white md:pb-24 md:pt-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center">
+          <p class="font-mono text-[10px] font-semibold uppercase tracking-[.24em] text-[#7898b8]">IMRABO PLANS</p>
+          <h1 class="mt-4 text-4xl font-semibold tracking-tight text-white md:text-5xl">Pricing</h1>
+          <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#9aa2ab] md:text-base">A connected AI workspace that scales from personal use to your whole team.</p>
+          <a href={siteUrl("contact/")} class="mt-6 inline-flex rounded-full bg-[#292b2e] px-7 py-3 text-sm font-medium text-white transition hover:bg-[#35383c]">Contact sales</a>
+        </div>
+        <div class="mt-10 flex justify-center">
+          <div class="pricing-switch inline-flex" role="group" aria-label="Choose pricing audience">
+            <button type="button" data-pricing-tab="individual" aria-pressed="true" class="rounded-full px-6 py-2 text-xs font-semibold text-white transition">Individual</button>
+            <button type="button" data-pricing-tab="teams" aria-pressed="false" class="rounded-full px-6 py-2 text-xs font-semibold text-[#8f98a2] transition">Teams</button>
+          </div>
+        </div>
+        <div class="mt-4 grid gap-4 md:grid-cols-3" data-pricing-cards>
+          {[
+            { key: "free", audience: "both", name: "Free with BYOK", price: "$0", cadence: "No ImRabo subscription", description: "Bring your own model-provider API keys and pay providers directly for usage.", features: ["Personal AI workspace", "Choose supported models and providers", "Available tools and connectors", "No ImRabo subscription fee"], action: "Get started", href: "docs/getting-started/", note: "Provider API usage is billed separately." },
+            { key: "solo", audience: "individual", name: "Solo", price: "Coming soon", cadence: "Individual plan", description: "A managed, ready-to-use AI workspace for personal productivity.", features: ["Personal AI workspace", "Agent and workflow capabilities", "Managed usage allowance (TBA)", "Personal settings and history"], action: "Explore Solo", href: "pricing/", note: "Price and included usage will be announced before launch." },
+            { key: "enterprise-individual", audience: "individual", name: "Enterprise", price: "Custom", cadence: "Contract-based", description: "A tailored deployment for advanced security, governance and organizational needs.", features: ["Identity and access requirements", "Governance assessment", "Deployment and integration review", "Commercial discussion"], action: "Contact sales", href: "contact/", note: "Scope and commitments agreed individually." },
+            { key: "team", audience: "teams", name: "Team", price: "Coming soon", cadence: "Per-seat plan", description: "Shared workspaces and coordinated AI workflows for teams.", features: ["Team workspace and members", "Shared agents and workflows", "Shared connector configuration", "Usage visibility and team controls"], action: "Explore Team", href: "pricing/", note: "Seat pricing and minimum seats are TBA." },
+            { key: "enterprise-team", audience: "teams", name: "Enterprise", price: "Custom", cadence: "Contract-based", description: "A tailored deployment for advanced security, governance and organizational needs.", features: ["Identity and access requirements", "Governance assessment", "Deployment and integration review", "Commercial discussion"], action: "Contact sales", href: "contact/", note: "Scope and commitments agreed individually." }
+          ].filter((plan) => plan.audience === "both" || plan.audience === "individual" || plan.audience === "teams").map((plan) => (
+            <article data-plan-card data-audience={plan.audience} class:list={["pricing-plan-card flex flex-col p-7 md:p-8"]}>
+              <p class="text-sm font-medium text-[#8da6bf]">{plan.name}</p>
+              <div class="mt-5 flex items-baseline gap-2"><span class="text-4xl font-semibold tracking-tight text-white">{plan.price}</span>{plan.price === "$0" && <span class="text-xs text-[#929ba5]">/ month</span>}</div>
+              <p class="mt-1 text-xs text-[#929ba5]">{plan.cadence}</p>
+              <p class="mt-5 min-h-[72px] text-sm leading-6 text-[#a0a7af]">{plan.description}</p>
+              <a href={siteUrl(plan.href)} class="mt-5 inline-flex w-full justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-[#111315] transition hover:bg-[#dce7f1]">{plan.action}</a>
+              <p class="mt-7 text-xs font-semibold text-white">Includes:</p>
+              <ul class="mt-3 flex-1 space-y-2.5 text-sm leading-6 text-[#929ba5]">{plan.features.map((feature) => <li class="flex gap-2.5"><span class="text-[#7898b8]">✓</span><span>{feature}</span></li>)}</ul>
+              <p class="mt-6 border-t border-white/10 pt-4 text-xs leading-5 text-[#858e98]">{plan.note}</p>
+            </article>
+          ))}
+        </div>
+        <div class="mt-4 flex flex-col gap-4 rounded-[1.35rem] bg-[#191a1c] p-5 md:flex-row md:items-center md:justify-between md:px-7">
+          <div class="flex items-start gap-3"><span class="mt-0.5 text-lg text-[#aabed2]">✳</span><p class="text-sm leading-6 text-white"><strong>Already using your own AI provider plan?</strong> <span class="text-[#929ba5]">Connect a supported API key and use it with ImRabo. Provider subscriptions and API billing are separate.</span></p></div>
+          <a href={siteUrl("docs/getting-started/")} class="inline-flex shrink-0 justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-white/10">Get started</a>
+        </div>
+        <p class="mt-5 text-center text-[11px] leading-5 text-[#737d87]">Solo and Team are planned tiers and are not currently purchasable. Enterprise scope is agreed individually. No unannounced prices or usage allowances are implied.</p>
       </div>
     </section>
-
-    <section id="imrabo-plans" class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
-      <div class="max-w-2xl"><p class="eyebrow">CHOOSE YOUR WORKSPACE</p><h2 class="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">One ecosystem. Four plans.</h2><p class="mt-4 text-sm leading-7 text-muted-foreground">Free with BYOK is the no-subscription starting point. Solo and Team are planned paid tiers; their prices and allowances will be published when finalized.</p></div>
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        {imraboPlans.map((plan) => (
-          <article class:list={["flex flex-col rounded-3xl border bg-card p-6", plan.featured ? "border-primary shadow-lg ring-1 ring-primary/20" : "border-border"]}>
-            {plan.featured && <span class="mb-4 w-fit rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">Individual</span>}
-            <h3 class="text-lg font-semibold text-card-foreground">{plan.name}</h3><p class="mt-5 text-3xl font-semibold tracking-tight text-foreground">{plan.price}</p><p class="mt-1 text-xs text-muted-foreground">{plan.cadence}</p>
-            <p class="mt-5 min-h-16 text-sm leading-6 text-muted-foreground">{plan.description}</p><p class="mt-5 text-xs font-semibold uppercase tracking-wider text-foreground">Designed for</p><p class="mt-2 text-sm leading-6 text-muted-foreground">{plan.audience}</p>
-            <ul class="mt-6 flex-1 space-y-3 text-sm leading-6 text-muted-foreground">{plan.features.map((feature) => <li class="flex gap-2"><span class="text-primary">✓</span><span>{feature}</span></li>)}</ul>
-            <p class="mt-6 rounded-xl bg-muted p-3 text-xs leading-5 text-muted-foreground">{plan.note}</p><a href={siteUrl(plan.href)} class:list={["mt-6 inline-flex justify-center rounded-full px-5 py-3 text-sm font-semibold transition", plan.featured ? "bg-primary text-primary-foreground hover:bg-primary/90" : "border border-border text-foreground hover:bg-muted"]}>{plan.action} →</a>
-          </article>
-        ))}
-      </div>
-      <div class="mt-7 rounded-2xl border border-border bg-muted/40 p-5 text-sm leading-7 text-muted-foreground"><strong class="text-foreground">How BYOK billing works:</strong> ImRabo does not include or resell model-provider tokens in the $0 workspace tier. You configure a supported provider key, and that provider bills your account directly for API usage. Provider rates, quotas and taxes are separate from any ImRabo subscription.</div>
-    </section>
+    <script>
+      const pricingRoot = document.querySelector("[data-pricing-cards]")?.parentElement;
+      if (pricingRoot) {
+        const tabs = Array.from(pricingRoot.querySelectorAll<HTMLButtonElement>("[data-pricing-tab]"));
+        const cards = Array.from(pricingRoot.querySelectorAll<HTMLElement>("[data-plan-card]"));
+        const selectAudience = (audience: string) => {
+          tabs.forEach((tab) => {
+            const active = tab.dataset.pricingTab === audience;
+            tab.setAttribute("aria-pressed", String(active));
+            tab.className = active ? "rounded-full px-6 py-2 text-xs font-semibold text-white transition" : "rounded-full px-6 py-2 text-xs font-semibold text-[#8f98a2] transition";
+          });
+          cards.forEach((card) => {
+            const show = card.dataset.audience === "both" || card.dataset.audience === audience;
+            card.classList.toggle("hidden", !show);
+          });
+        };
+        tabs.forEach((tab) => tab.addEventListener("click", () => selectAudience(tab.dataset.pricingTab ?? "individual")));
+        selectAudience("individual");
+      }
+    </script>
 
     <section class="border-y border-border bg-muted/25 py-20" id="provider-comparison">
       <div class="mx-auto max-w-7xl px-6 md:px-10 lg:px-12">
