@@ -3,15 +3,30 @@ import { socialLinks } from "../../config/social";
 import { siteUrl } from "../../lib/urls";
 const currentYear = new Date().getFullYear();
 const footerGroups = [
-  { title: "Explore", links: [{ label: "Features", href: siteUrl("features/") }, { label: "Platforms", href: siteUrl("platforms/") }, { label: "Pricing", href: siteUrl("pricing/") }, { label: "Marketplace", href: siteUrl("marketplace/") }] },
-  { title: "Build", links: [{ label: "Documentation", href: siteUrl("docs/") }, { label: "Getting started", href: siteUrl("docs/getting-started/") }, { label: "CLI package", href: "https://www.npmjs.com/package/@imrabo/cli", external: true }, { label: "GitHub", href: "https://github.com/imrabo", external: true }] },
+  { title: "Products", links: [{ label: "AI Workspace", href: siteUrl("features/") }, { label: "Agents", href: siteUrl("features/") }, { label: "Connectors", href: siteUrl("marketplace/") }, { label: "Pricing", href: siteUrl("pricing/") }] },
+  { title: "Solutions", links: [{ label: "Personal AI", href: siteUrl("platforms/") }, { label: "Teams", href: siteUrl("pricing/") }, { label: "Developers", href: siteUrl("docs/") }, { label: "Enterprise", href: siteUrl("contact/") }] },
+  { title: "Developers", links: [{ label: "Documentation", href: siteUrl("docs/") }, { label: "Getting started", href: siteUrl("docs/getting-started/") }, { label: "CLI package", href: "https://www.npmjs.com/package/@imrabo/cli", external: true }, { label: "GitHub", href: "https://github.com/imrabo", external: true }] },
   { title: "Company", links: [{ label: "About", href: siteUrl("about/") }, { label: "Contact", href: siteUrl("contact/") }, { label: "Privacy", href: siteUrl("privacy/") }, { label: "Terms", href: siteUrl("terms/") }] },
 ];
 ---
-<footer class="border-t border-border bg-background text-foreground">
-  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 sm:grid-cols-2 md:px-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-16 lg:px-12 lg:py-20">
-    <div class="max-w-sm"><a href={siteUrl("")} class="inline-flex items-center gap-3 text-2xl font-bold tracking-tight text-foreground" aria-label="ImRabo homepage"><img src={siteUrl("mascot-face-only.png")} alt="" aria-hidden="true" class="h-10 w-10 object-contain"/>ImRabo<span class="text-primary">.</span></a><p class="mt-5 text-sm leading-7 text-muted-foreground">One connected ecosystem for AI assistants, agents, tools and the workflows that bring them together.</p><div class="mt-7 flex flex-wrap items-center gap-4">{socialLinks.map((social) => <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">{social.label}</a>)}</div></div>
-    {footerGroups.map((group) => <div><h2 class="mb-5 text-xs font-bold uppercase tracking-[.16em] text-foreground">{group.title}</h2><nav aria-label={group.title + " links"} class="flex flex-col gap-3">{group.links.map((link) => <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} class="w-fit text-sm text-muted-foreground transition-colors hover:text-primary">{link.label}{link.external && <span class="ml-1 text-xs" aria-hidden="true">↗</span>}</a>)}</nav></div>)}
+<footer class="site-footer-hero border-t border-white/10">
+  <section class="relative z-10 px-6 pb-8 pt-20 text-center md:pt-24">
+    <p class="font-mono text-[10px] font-semibold uppercase tracking-[.24em] text-[#7898b8]">IMRABO · YOUR AI WORKSPACE</p>
+    <h2 class="mx-auto mt-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">Meet your first agent.</h2>
+    <p class="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/60 md:text-base">An AI teammate to help you think, build and get work done — with your models, tools and workflows connected.</p>
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <a href={siteUrl("docs/getting-started/")} class="inline-flex min-w-44 justify-center rounded-full bg-white px-6 py-3 text-sm font-medium text-[#101214] transition hover:bg-[#dce7f1]">Get started for free</a>
+      <a href={siteUrl("contact/")} class="inline-flex min-w-36 justify-center rounded-full bg-[#292b2e] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#35383c]">Contact sales</a>
+    </div>
+  </section>
+  <div class="site-footer-mark" aria-hidden="true"></div>
+  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 border-t border-white/10 px-6 py-12 sm:grid-cols-2 md:px-10 lg:grid-cols-[1.5fr_repeat(4,1fr)] lg:gap-12 lg:px-12 lg:py-16">
+    <div class="max-w-sm">
+      <a href={siteUrl("")} class="inline-flex items-center gap-3 text-2xl font-bold tracking-tight text-white" aria-label="ImRabo homepage"><img src={siteUrl("mascot-face-only.png")} alt="" aria-hidden="true" class="h-10 w-10 object-contain"/>ImRabo<span class="text-[#7898b8]">.</span></a>
+      <p class="mt-5 text-sm leading-7 text-[#929ba5]">One connected ecosystem for AI assistants, agents, tools and the workflows that bring them together.</p>
+      <div class="mt-7 flex flex-wrap items-center gap-4">{socialLinks.map((social) => <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} class="text-sm font-medium text-[#929ba5] transition-colors hover:text-white">{social.label}</a>)}</div>
+    </div>
+    {footerGroups.map((group) => <div class="site-footer-links"><h2 class="mb-5 text-xs font-bold uppercase tracking-[.16em] text-white">{group.title}</h2><nav aria-label={group.title + " links"} class="flex flex-col gap-3">{group.links.map((link) => <a href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined} class="w-fit text-sm transition-colors">{link.label}{link.external && <span class="ml-1 text-xs" aria-hidden="true">↗</span>}</a>)}</nav></div>)}
   </div>
-  <div class="border-t border-border"><div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:px-10 lg:px-12"><p>© {currentYear} ImRabo. Built for connected work.</p><div class="flex flex-wrap items-center gap-5"><a href={siteUrl("privacy/")} class="hover:text-primary">Privacy</a><a href={siteUrl("terms/")} class="hover:text-primary">Terms</a><a href="https://github.com/imrabo" target="_blank" rel="noopener noreferrer" class="hover:text-primary">Open development ↗</a></div></div></div>
+  <div class="border-t border-white/10"><div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 text-xs text-[#929ba5] md:flex-row md:items-center md:justify-between md:px-10 lg:px-12"><p>© {currentYear} ImRabo. Built for connected work.</p><div class="flex flex-wrap items-center gap-5"><a href={siteUrl("privacy/")} class="hover:text-white">Privacy</a><a href={siteUrl("terms/")} class="hover:text-white">Terms</a><a href="https://github.com/imrabo" target="_blank" rel="noopener noreferrer" class="hover:text-white">Open development ↗</a></div></div></div>
 </footer>
