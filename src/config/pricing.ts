@@ -5,9 +5,7 @@ export const pricingPlans = [
     eyebrow: "Free forever",
     priceInr: "₹0",
     monthlyInr: "₹0",
-    annualInr: "₹0",
     monthlyUsd: "$0",
-    annualUsd: "$0",
     cadence: "Forever",
     audience: "For developers exploring ImRabo.",
     features: [
@@ -29,9 +27,7 @@ export const pricingPlans = [
     eyebrow: "Recommended",
     priceInr: "₹499",
     monthlyInr: "₹499",
-    annualInr: "₹4,990",
     monthlyUsd: "$6",
-    annualUsd: "Contact sales",
     cadence: "/month",
     audience: "For individual professionals and developers.",
     features: [
@@ -48,7 +44,7 @@ export const pricingPlans = [
     ],
     action: "Choose Solo",
     href: "/contact/",
-    note: "Annual India billing: ₹4,990/year. International pricing: $6/month."
+    note: "Model-provider API usage is billed separately."
   },
   {
     key: "team",
@@ -56,9 +52,7 @@ export const pricingPlans = [
     eyebrow: "For small teams",
     priceInr: "₹1,499",
     monthlyInr: "₹1,499",
-    annualInr: "₹14,990",
     monthlyUsd: "$19",
-    annualUsd: "Contact sales",
     cadence: "/month",
     audience: "For teams building with AI agents.",
     features: [
@@ -76,7 +70,7 @@ export const pricingPlans = [
     ],
     action: "Choose Team",
     href: "/contact/",
-    note: "Annual India billing: ₹14,990/year. International pricing: $19/month."
+    note: "Includes up to 5 members. Additional seats are a paid add-on."
   },
   {
     key: "enterprise",
@@ -84,9 +78,7 @@ export const pricingPlans = [
     eyebrow: "Custom licensing",
     priceInr: "Custom pricing",
     monthlyInr: "Custom pricing",
-    annualInr: "Custom pricing",
     monthlyUsd: "Custom pricing",
-    annualUsd: "Custom pricing",
     cadence: "",
     audience: "For organizations and large deployments.",
     features: [
